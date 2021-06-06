@@ -1,5 +1,7 @@
+import { ProductCard } from "@components";
+
 const EntryPoint = () => {
-  return <h1>Hache uno</h1>;
+  return <ProductCard />;
 };
 
 export default EntryPoint;
