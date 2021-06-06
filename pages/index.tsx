@@ -1,7 +1,7 @@
-import { ProductCard } from "@components";
+import { ProductCardList } from "@components";
 
 const EntryPoint = () => {
-  return <ProductCard />;
+  return <ProductCardList />;
 };
 
 export default EntryPoint;

@@ -3,7 +3,8 @@
     "baseUrl": ".",
     "paths": {
       "@components": ["components/index"],
-      "@database/*": ["database/*"]
+      "@database/*": ["database/*"],
+      "@domainTypes/*": ["types/*"]
     },
     "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],

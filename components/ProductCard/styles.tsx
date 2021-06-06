@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ProductCardStyled = styled.div`
-  &  img {
+  & img {
     border: 1px solid gray;
     border-radius: 12px;
   }

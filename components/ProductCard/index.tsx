@@ -1,9 +1,8 @@
-import Products from "@database/products";
 import Image from "next/image";
+import { Product } from "@domainTypes/Product";
 import { ProductCardStyled } from "./styles";
 
-const ProductCard = () => {
-  const { name, id, sku, price, image } = Products[0];
+const ProductCard = ({ name, id, sku, price, image }: Product) => {
   return (
     <ProductCardStyled>
       <Image
