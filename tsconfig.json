@@ -4,7 +4,8 @@
     "paths": {
       "@components": ["components/index"],
       "@database/*": ["database/*"],
-      "@domainTypes/*": ["types/*"]
+      "@domainTypes/*": ["types/*"],
+      "@storage/*": ["storage/*"]
     },
     "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],

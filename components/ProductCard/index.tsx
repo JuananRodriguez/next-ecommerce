@@ -1,8 +1,17 @@
 import Image from "next/image";
 import { Product } from "@domainTypes/Product";
 import { ProductCardStyled } from "./styles";
+import { useCartMutations } from "storage/Cart";
 
-const ProductCard = ({ name, id, sku, price, image }: Product) => {
+const ProductCard = (Product: Product) => {
+  const { name, id, sku, price, image } = Product;
+
+  const { addToCart } = useCartMutations();
+
+  const handleAddToCart = () => {
+    addToCart(Product, 1);
+  };
+
   return (
     <ProductCardStyled>
       <Image
@@ -15,6 +24,7 @@ const ProductCard = ({ name, id, sku, price, image }: Product) => {
       />
       <h3 className="name">{name}</h3>
       <span className="price">€ {price}</span>
+      <button onClick={handleAddToCart}>Add to Cart</button>
     </ProductCardStyled>
   );
 };

@@ -1,7 +1,11 @@
+import { useCart } from "storage/Cart";
+
 const Header = (): React.ReactElement => {
+  const { count } = useCart();
+
   return (
     <header>
-      <p>Header</p>
+      <p>{count}</p>
     </header>
   );
 };
