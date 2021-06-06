@@ -4,10 +4,10 @@ type Props = {
 
 const Layout = ({ children }: Props): React.ReactElement => {
   return (
-    <div>
+    <main>
       <p>Layout</p>
       {children}
-    </div>
+    </main>
   );
 };
 
