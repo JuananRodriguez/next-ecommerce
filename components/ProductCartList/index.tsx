@@ -1,4 +1,4 @@
-import { ProductCartItem } from "@components";
+import { ProductCartItem, EmptyCartMessage } from "@components";
 import { ProductInCart, ProductInCartList } from "@domainTypes/Product";
 import { ProductCartListStyled } from "./styles";
 
@@ -8,12 +8,15 @@ type Props = {
 
 const ProductCartList = (props: Props) => {
   const { products } = props;
-  return (
+
+  return products.length ? (
     <ProductCartListStyled>
       {products.map((product: ProductInCart) => (
         <ProductCartItem key={product.id} product={product} />
       ))}
     </ProductCartListStyled>
+  ) : (
+    <EmptyCartMessage />
   );
 };
 

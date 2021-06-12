@@ -11,6 +11,7 @@ import FullLoading from "./FullLoading";
 import ProductCartList from "./ProductCartList";
 import ProductCartItem from "./ProductCartItem";
 import Counter from "./Counter";
+import EmptyCartMessage from "./EmptyCartMessage";
 
 export {
   Header,
@@ -26,4 +27,5 @@ export {
   ProductCartList,
   ProductCartItem,
   Counter,
+  EmptyCartMessage,
 };
