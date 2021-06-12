@@ -7,6 +7,7 @@ import ProductCardList from "./ProductCardList";
 import ResetStyle from "./ResetStyle";
 import TopBarMenu from "./TopBarMenu";
 import TopBannerPromo from "./TopBannerPromo";
+import FullLoading from "./FullLoading";
 
 export {
   Header,
@@ -18,4 +19,5 @@ export {
   TopBannerPromo,
   Footer,
   Layout,
+  FullLoading
 };
