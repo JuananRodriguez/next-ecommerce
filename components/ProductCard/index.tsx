@@ -5,14 +5,17 @@ import { ProductReactions } from "@components";
 import { useCartMutations } from "storage/Cart";
 import { IoBasketOutline } from "react-icons/io5";
 import Link from "next/link";
+interface Props {
+  product: Product;
+}
 
-const ProductCard = (Product: Product) => {
-  const { title, id, price, image } = Product;
+const ProductCard = ({ product }: Props) => {
+  const { title, id, price, image } = product;
 
   const { addToCart } = useCartMutations();
 
   const handleAddToCart = () => {
-    addToCart(Product, 1);
+    addToCart(product, 1);
   };
 
   const url = `/products/${id}`;
@@ -31,7 +34,7 @@ const ProductCard = (Product: Product) => {
           />
         </a>
       </Link>
-      <ProductReactions />
+      <ProductReactions product={product} />
       <Link href={url} passHref>
         <a>
           <h3 className="name">

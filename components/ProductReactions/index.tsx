@@ -1,28 +1,39 @@
 import { ProductReactionsWrapper } from "./styles";
+import { useWishlist, useWishlistMutations } from "storage/Wishlist";
+import { Product } from "@domainTypes/Product";
 import {
   IoHeartOutline,
   IoHeartSharp,
   IoShareSocialOutline,
 } from "react-icons/io5";
-import { useState } from "react";
+interface Props {
+  product: Product;
+}
 
-const ProductReactions = () => {
-  //TODO: no simulate fake state
-  const [isFav, setIsFav] = useState(false);
+const ProductReactions = ({ product }: Props) => {
+  const { itemsById } = useWishlist();
+  const { addToWishlist, removeFromWishlist } = useWishlistMutations();
 
-  const toogleFav = () => {
-    setIsFav(!isFav);
+  const handleAddToWishList = () => {
+    addToWishlist(product);
+  };
+
+  const handleRemoveFromWishList = () => {
+    removeFromWishlist(product);
+  };
+
+  const renderWishlistIcon = () => {
+    const isInWishlist = Boolean(itemsById[product.id]);
+    return isInWishlist ? (
+      <IoHeartSharp onClick={handleRemoveFromWishList} size="1.8rem" />
+    ) : (
+      <IoHeartOutline onClick={handleAddToWishList} size="1.8rem" />
+    );
   };
 
   return (
     <ProductReactionsWrapper>
-      <li>
-        {isFav ? (
-          <IoHeartSharp onClick={toogleFav} size="1.8rem" />
-        ) : (
-          <IoHeartOutline onClick={toogleFav} size="1.8rem" />
-        )}
-      </li>
+      <li>{renderWishlistIcon()}</li>
       <li>
         <IoShareSocialOutline size="1.8rem" />
       </li>

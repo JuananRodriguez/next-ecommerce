@@ -11,7 +11,7 @@ const ProductCardList = (props: Props) => {
   return (
     <ProductCardListStyled>
       {products.map((product: Product) => (
-        <ProductCard key={product.id} {...product} />
+        <ProductCard key={product.id} product={product} />
       ))}
     </ProductCardListStyled>
   );
