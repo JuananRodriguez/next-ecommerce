@@ -1,12 +1,16 @@
 import { ProductCard } from "@components";
-import { Product } from "@domainTypes/Product";
-import Products from "@database/products";
+import { Product, ProductList } from "@domainTypes/Product";
 import { ProductCardListStyled } from "./styles";
 
-const ProductCardList = () => {
+type Props = {
+  products: ProductList;
+};
+
+const ProductCardList = (props: Props) => {
+  const { products } = props;
   return (
     <ProductCardListStyled>
-      {Products.map((product: Product) => (
+      {products.map((product: Product) => (
         <ProductCard key={product.id} {...product} />
       ))}
     </ProductCardListStyled>

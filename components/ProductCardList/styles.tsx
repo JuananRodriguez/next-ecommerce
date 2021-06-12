@@ -6,6 +6,14 @@ export const ProductCardListStyled = styled.div`
   flex-wrap: wrap;
 
   & > ${ProductCardStyled} {
-    margin: 0.5rem;
+    margin: 0;
+    width: 100%;
+    margin-bottom: 0.8rem;
+    margin-top: 0.8rem;
+
+    @media (min-width: 480px) {
+      margin-right: 0.5rem;
+      margin-left: 0.5rem;
+    }
   }
 `;
