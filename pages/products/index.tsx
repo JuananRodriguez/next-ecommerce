@@ -1,4 +1,3 @@
-import fetch from "isomorphic-unfetch";
 import { ProductCardList } from "@components";
 import { getApiPath } from "utils/getApiPath";
 import { NextApiRequest, GetServerSideProps } from "next";
@@ -12,8 +11,8 @@ const EntryPoint = ({ data }: Props) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { req } = context;
-  const url = getApiPath(req as NextApiRequest);
+  const { resolvedUrl } = context;
+  const url = getApiPath(resolvedUrl);
   const res = await fetch(url);
   const data = await res.json();
 

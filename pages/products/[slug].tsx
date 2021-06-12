@@ -2,8 +2,9 @@ import fetch from "isomorphic-unfetch";
 import { getApiPath } from "utils/getApiPath";
 import { NextApiRequest, GetServerSideProps } from "next";
 import ProductView from "components/ProductView";
+import { Product } from "@domainTypes/Product";
 
-const ProductPage = ({ data }) => {
+const ProductPage = ({ data }: { data: Product }) => {
   return <ProductView {...data} />;
 };
 
@@ -26,8 +27,8 @@ const ProductPage = ({ data }) => {
 //   };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { req } = context;
-  const url = getApiPath(req as NextApiRequest);
+  const { resolvedUrl } = context;
+  const url = getApiPath(resolvedUrl);
   const res = await fetch(url);
   const data = await res.json();
 
