@@ -14,7 +14,6 @@ export const TopBannerStyle = styled.div`
   background-color: palevioletred;
   padding: 0.25rem 0.5rem;
   width: 100%;
-  border-bottom: 3px solid #e0e0e0;
   z-index: 100;
   height: 50px;
   left: 0;
