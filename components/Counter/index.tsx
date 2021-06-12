@@ -10,7 +10,7 @@ interface Props {
 function Counter({ value = 0, onIncrease, onDecrease }: Props) {
   return (
     <CounterStyle>
-      <button onClick={onIncrease}>
+      <button onClick={onDecrease}>
         <AiOutlineMinus size="1.4rem" />
       </button>
       <InputStyle>
