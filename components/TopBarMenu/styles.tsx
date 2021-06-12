@@ -15,15 +15,7 @@ export const TopBarStyle = styled.div`
   height: 60px;
 
   & .logotype {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-left: 1rem;
   }
 
   & .checkout {
@@ -36,11 +28,8 @@ export const TopBarStyle = styled.div`
     align-items: center;
     flex-direction: column;
 
-    &:not(:last-child){
+    &:not(:last-child) {
       margin-right: 0.5rem;
     }
-  }
-
-  & .icon-and-count {
   }
 `;
