@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Product } from "@domainTypes/Product";
 import { ProductViewStyled } from "./styles";
 
-const ProductCard = (Product: Product) => {
+const ProductView = (Product: Product) => {
   const { title, id, price, image } = Product;
 
   return (
@@ -21,4 +21,4 @@ const ProductCard = (Product: Product) => {
   );
 };
 
-export default ProductCard;
+export default ProductView;

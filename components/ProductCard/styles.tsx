@@ -1,18 +1,51 @@
 import styled from "styled-components";
+import { ProductReactionsWrapper } from "../ProductReactions/styles";
 
 export const ProductCardStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  & > div {
+    min-width: 100%;
+
+    @media (min-width: 480px) {
+      border-radius: 15px;
+    }
+  }
+
   & img {
-    border: 1px solid gray;
-    border-radius: 12px;
+    object-fit: cover;
   }
 
-  & > h3.name {
+  & .name,
+  & .price,
+  & .add-to-cart,
+  & ${ProductReactionsWrapper} {
+    font-size: 1.2rem;
     margin-top: 10px;
-    font-size: 1.6rem;
-    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    @media (min-width: 480px) {
+      font-size: 1.6rem;
+      margin-left: 0px;
+      margin-right: 0px;
+    }
   }
 
-  & > .price {
-    font-size: 1rem;
+  & .name {
+    font-weight: 600;
+  }
+
+  & > .add-to-cart {
+    margin-bottom: 20px;
+    padding: 0.5rem;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    & > .label{
+      margin-left: 0.25rem;
+    }
   }
 `;

@@ -1,10 +1,12 @@
 import Image from "next/image";
 import { Product } from "@domainTypes/Product";
 import { ProductCardStyled } from "./styles";
+import { ProductReactions } from "@components";
 import { useCartMutations } from "storage/Cart";
+import { IoBasketOutline } from "react-icons/io5";
 
 const ProductCard = (Product: Product) => {
-  const { name, id, sku, price, image } = Product;
+  const { title, id, price, image } = Product;
 
   const { addToCart } = useCartMutations();
 
@@ -13,18 +15,24 @@ const ProductCard = (Product: Product) => {
   };
 
   return (
-    <ProductCardStyled>
+    <ProductCardStyled key={id}>
       <Image
         className="image"
         src={image}
-        width="300"
-        height="300"
-        alt={name}
+        width="600"
+        height="600"
+        alt={title}
         priority={true}
       />
-      <h3 className="name">{name}</h3>
-      <span className="price">€ {price}</span>
-      <button onClick={handleAddToCart}>Add to Cart</button>
+      <ProductReactions />
+      <h3 className="name">
+        <strong>{title}</strong>
+      </h3>
+      <span className="price">{price} €</span>
+      <button className="add-to-cart" role="button" onClick={handleAddToCart}>
+        <IoBasketOutline size="1.8rem" />{" "}
+        <span className="label">Añadir a la cesta</span>
+      </button>
     </ProductCardStyled>
   );
 };
