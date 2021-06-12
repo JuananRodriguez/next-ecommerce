@@ -5,6 +5,7 @@ import ProductCard from "./ProductCard";
 import ProductReactions from "./ProductReactions";
 import ProductCardList from "./ProductCardList";
 import ResetStyle from "./ResetStyle";
+import TopBarMenu from "./TopBarMenu";
 
 export {
   Header,
@@ -12,6 +13,7 @@ export {
   ProductCard,
   ProductReactions,
   ProductCardList,
+  TopBarMenu,
   Footer,
   Layout,
 };

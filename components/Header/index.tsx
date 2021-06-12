@@ -1,11 +1,9 @@
-import { useCart } from "storage/Cart";
+import { TopBarMenu } from "@components";
 
 const Header = (): React.ReactElement => {
-  const { count } = useCart();
-
   return (
     <header>
-      <p>{count}</p>
+      <TopBarMenu />
     </header>
   );
 };

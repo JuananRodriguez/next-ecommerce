@@ -1,9 +1,11 @@
+import { MainStyle } from "./styles";
+
 type Props = {
   children?: React.ReactNode;
 };
 
 const Layout = ({ children }: Props): React.ReactElement => {
-  return <main>{children}</main>;
+  return <MainStyle>{children}</MainStyle>;
 };
 
 export default Layout;
