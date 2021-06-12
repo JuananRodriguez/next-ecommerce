@@ -1,10 +1,8 @@
 import React, { Dispatch, useContext, useReducer } from "react";
 import { Product } from "@domainTypes/Product";
 
-export type WishlistItemType = Product & { quantity: number };
-
 export type WishlistState = {
-  [key: string]: WishlistItemType;
+  [key: string]: Product;
 };
 
 export type WishlistAction = {
@@ -34,46 +32,28 @@ const WishListProvider = ({ children }: { children: React.ReactNode }) => {
 
 function wishlistReducers(
   state: WishlistState,
-  { item, type, quantity: qtyToAdd = 1 }: WishlistAction
+  { item, type }: WishlistAction
 ) {
   const existingWishlistItem = state[item.id];
 
   switch (type) {
     case "add": {
       if (existingWishlistItem != undefined) {
-        const quantity = existingWishlistItem.quantity + qtyToAdd;
         return {
           ...state,
-          [item.id]: {
-            ...existingWishlistItem,
-            quantity,
-          },
+          [item.id]: { ...existingWishlistItem },
         };
       }
 
       return {
         ...state,
-        [item.id]: {
-          ...item,
-          quantity: qtyToAdd,
-        },
+        [item.id]: { ...item },
       };
     }
 
     case "remove": {
       if (existingWishlistItem == undefined) {
         return state;
-      }
-
-      const quantity = existingWishlistItem.quantity - 1;
-      if (quantity > 0) {
-        return {
-          ...state,
-          [item.id]: {
-            ...existingWishlistItem,
-            quantity,
-          },
-        };
       }
 
       const newWishlistItems = { ...state };
@@ -87,17 +67,15 @@ function wishlistReducers(
   }
 }
 
-const getWishlistSubTotal = (sum: number, item: WishlistItemType) => {
-  sum += item.price * item.quantity;
+const getWishlistSubTotal = (sum: number, item: Product) => {
+  sum += item.price;
   return sum;
 };
-const getWishlistCount = (sum: number, item: WishlistItemType) =>
-  sum + item.quantity;
 
 export const useWishlist = () => {
   const itemsById = useContext(WishlistItemsContext);
   const items = Object.values(itemsById);
-  const count = items.reduce(getWishlistCount, 0);
+  const count = items.length;
   const subTotal = items.reduce(getWishlistSubTotal, 0);
 
   return {
@@ -110,11 +88,10 @@ export const useWishlist = () => {
 export const useWishlistMutations = () => {
   const dispatch = useContext(WishlistDispatchContext);
 
-  const addToWishlist = (product: Product, quantity?: number) =>
+  const addToWishlist = (product: Product) =>
     dispatch({
       type: "add",
       item: product,
-      quantity,
     });
 
   const removeFromWishlist = (product: Product) =>
