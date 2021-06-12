@@ -7,7 +7,7 @@ import { useCart } from "storage/Cart";
 const TopBarMenu = () => {
   const { count } = useCart();
   return (
-    <TopBarStyle>
+    <TopBarStyle top>
       <div className="menu">
         <HiOutlineMenuAlt1 size="1.8rem" />
       </div>
