@@ -1,8 +1,10 @@
 export type Product = {
-  name: string;
+  title: string;
   id: string;
-  sku: string;
+  category: string;
   price: number;
   image: string;
-  attributes: { description: string };
+  description: string;
 };
+
+export type ProductList = Array<Product>;
