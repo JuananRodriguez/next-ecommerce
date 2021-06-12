@@ -8,7 +8,7 @@ export type CartState = {
 };
 
 export type CartAction = {
-  type: "add" | "remove";
+  type: "add" | "remove" | "decrease";
   item: Product;
   quantity?: number;
 };
@@ -60,7 +60,7 @@ function cartReducers(
       };
     }
 
-    case "remove": {
+    case "decrease": {
       if (existingCartItem == undefined) {
         return state;
       }
@@ -81,6 +81,16 @@ function cartReducers(
       return newCartItems;
     }
 
+    case "remove": {
+      if (existingCartItem == undefined) {
+        return state;
+      }
+
+      const newCartItems = { ...state };
+      delete newCartItems[item.id];
+      return newCartItems;
+    }
+
     default: {
       throw new Error(`Unhandled action type: ${type}`);
     }
@@ -92,17 +102,9 @@ const getCartSubTotal = (sum: number, item: CartItemType) => {
   return sum;
 };
 const getCartCount = (sum: number, item: CartItemType) => sum + item.quantity;
-/**
- * Hey there insatiably brain,
- * Are you interested in this pattern where the Context values are
- * exposed without actually provinding access to the Context itself :)
- * https://kentcdodds.com/blog/how-to-use-react-context-effectively
- */
 export const useCart = () => {
   const itemsById = useContext(CartItemsContext);
   const items = Object.values(itemsById);
-  // Not familiar with Array.reduce? :)
-  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
   const count = items.reduce(getCartCount, 0);
   const subTotal = items.reduce(getCartSubTotal, 0);
 
@@ -129,9 +131,16 @@ export const useCartMutations = () => {
       item: product,
     });
 
+  const decreaseFromCart = (product: Product) =>
+    dispatch({
+      type: "decrease",
+      item: product,
+    });
+
   return {
     addToCart,
     removeFromCart,
+    decreaseFromCart,
   };
 };
 
