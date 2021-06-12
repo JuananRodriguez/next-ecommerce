@@ -2,9 +2,9 @@ import { ProductCard } from "@components";
 import { Product, ProductList } from "@domainTypes/Product";
 import { ProductCardListStyled } from "./styles";
 
-type Props = {
+interface Props {
   products: ProductList;
-};
+}
 
 const ProductCardList = (props: Props) => {
   const { products } = props;

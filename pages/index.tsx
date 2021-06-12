@@ -1,7 +1,7 @@
 import { ProductCardList } from "@components";
 
 const EntryPoint = () => {
-  return <ProductCardList />;
+  return <ProductCardList products={[]} />;
 };
 
 export default EntryPoint;
