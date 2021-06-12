@@ -7,14 +7,16 @@ const ProductView = (Product: Product) => {
 
   return (
     <ProductViewStyled key={id}>
-      <Image
-        className="image"
-        src={image}
-        width="300"
-        height="300"
-        alt={title}
-        priority={true}
-      />
+      {image && (
+        <Image
+          className="image"
+          src={image}
+          width="300"
+          height="300"
+          alt={title}
+          priority={true}
+        />
+      )}
       <h3 className="name">{title}</h3>
       <span className="price">€ {price}</span>
     </ProductViewStyled>
