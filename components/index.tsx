@@ -8,6 +8,9 @@ import ResetStyle from "./ResetStyle";
 import TopBarMenu from "./TopBarMenu";
 import TopBannerPromo from "./TopBannerPromo";
 import FullLoading from "./FullLoading";
+import ProductCartList from "./ProductCartList";
+import ProductCartItem from "./ProductCartItem";
+import Counter from "./Counter";
 
 export {
   Header,
@@ -19,5 +22,8 @@ export {
   TopBannerPromo,
   Footer,
   Layout,
-  FullLoading
+  FullLoading,
+  ProductCartList,
+  ProductCartItem,
+  Counter,
 };

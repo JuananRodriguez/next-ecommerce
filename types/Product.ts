@@ -6,5 +6,7 @@ export type Product = {
   image: string;
   description: string;
 };
-
 export type ProductList = Array<Product>;
+
+export type ProductInCart = Product & { quantity: number };
+export type ProductInCartList = Array<ProductInCart>;

@@ -1,10 +1,9 @@
 import { useCart } from "storage/Cart";
+import { ProductCartList } from "@components";
 
 const Cart = () => {
   const { items } = useCart();
-  console.log(items);
-
-  return <p>you are in cart</p>;
+  return <ProductCartList products={items} />;
 };
 
 export default Cart;
