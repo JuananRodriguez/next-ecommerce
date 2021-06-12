@@ -17,7 +17,6 @@ export const CounterStyle = styled.div`
     display: flex;
     -webkit-box-align: center;
     align-items: center;
-    border-radius: 0px 5px 5px 0px;
     background-color: rgb(255, 255, 255);
     -webkit-box-pack: center;
     justify-content: center;
@@ -25,6 +24,14 @@ export const CounterStyle = styled.div`
     padding: 0;
     background: transparent;
     box-shadow: none;
+
+    &:first-child{
+      border-radius: 5px 0px 0px 5px;
+    }
+
+    &:last-child{
+      border-radius: 0px 5px 5px 0px;
+    }
   }
 `;
 
