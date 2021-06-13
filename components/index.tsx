@@ -13,6 +13,7 @@ import ProductCartList from "./ProductCartList";
 import ProductCartItem from "./ProductCartItem";
 import Counter from "./Counter";
 import EmptyCartMessage from "./EmptyCartMessage";
+import ProductCartPreCheckout from "./ProductCartPreCheckout";
 
 export {
   Header,
@@ -30,4 +31,5 @@ export {
   ProductCartItem,
   Counter,
   EmptyCartMessage,
+  ProductCartPreCheckout,
 };

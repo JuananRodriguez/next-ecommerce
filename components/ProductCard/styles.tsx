@@ -19,6 +19,7 @@ export const ProductCardStyled = styled.div`
 
   & .name,
   & .price,
+  & .add-to-cart,
   & ${ProductReactionsWrapper} {
     font-size: 1.2rem;
     margin-top: 10px;

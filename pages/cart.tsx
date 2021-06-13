@@ -1,9 +1,14 @@
 import { useCart } from "storage/Cart";
-import { ProductCartList } from "@components";
+import { ProductCartList, ProductCartPreCheckout } from "@components";
 
 const Cart = () => {
-  const { items } = useCart();
-  return <ProductCartList products={items} />;
+  const { items, subTotal } = useCart();
+  return (
+    <>
+      <ProductCartList products={items} />
+      <ProductCartPreCheckout subTotal={subTotal} />
+    </>
+  );
 };
 
 export default Cart;
