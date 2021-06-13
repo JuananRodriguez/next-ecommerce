@@ -1,24 +1,30 @@
-import { TopBarStyle } from "./styles";
+import { TopBarStyle, LogotypeAnchor } from "./styles";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { IoHeartOutline, IoBasketOutline } from "react-icons/io5";
 import Link from "next/link";
 import { useCart } from "storage/Cart";
 import { useWishlist } from "@storage/Wishlist";
+import Image from "next/image";
 
 const TopBarMenu = () => {
   const { count: productInCart } = useCart();
   const { count: productInWishList } = useWishlist();
-  
+
   return (
     <TopBarStyle top>
       <div className="menu">
         <HiOutlineMenuAlt1 size="1.8rem" />
       </div>
-      <div className="logotype">
-        <Link href="/products" passHref>
-          <a>PIMPAMPUM</a>
-        </Link>
-      </div>
+      <Link href="/products" passHref>
+        <LogotypeAnchor>
+          <Image
+            src="/images/logotype.png"
+            alt="pimpampum-logotype"
+            width="180"
+            height="54"
+          />
+        </LogotypeAnchor>
+      </Link>
       <div className="checkout">
         <Link href="/wishlist" passHref>
           <a className="icon-and-count">

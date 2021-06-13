@@ -30,10 +30,6 @@ export const TopBarStyle = styled("div")`
     bottom: 0;
   `}
 
-  & .logotype {
-    margin-left: 1rem;
-  }
-
   & .checkout {
     display: flex;
     align-items: center;
@@ -48,4 +44,8 @@ export const TopBarStyle = styled("div")`
       margin-right: 0.5rem;
     }
   }
+`;
+
+export const LogotypeAnchor = styled.a`
+  display: block;
 `;
