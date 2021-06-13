@@ -9,6 +9,10 @@ export const VariantStyle = styled.div`
   width: 50px;
   height: 50px;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   ${(p: VariantStyleProps) =>
     p.isSelected &&
     `

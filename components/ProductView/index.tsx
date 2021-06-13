@@ -1,11 +1,15 @@
 import Image from "next/image";
-import { Product } from "@domainTypes/Product";
+import { Product, ProductVariant } from "@domainTypes/Product";
 import { ProductViewStyled } from "./styles";
 import { Counter, Variantions } from "@components";
 import { useState } from "react";
 
 const ProductView = (Product: Product) => {
   const [quantity, setQuantity] = useState(1);
+  const [variantSelected, setVariantSelected] = useState<ProductVariant | null>(
+    null
+  );
+
   const { name, id, price_html, variations, images = [] } = Product;
   const [firstImage] = images;
 
@@ -17,6 +21,10 @@ const ProductView = (Product: Product) => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
     }
+  };
+
+  const handleSelectVariation = (productVariant: ProductVariant) => {
+    setVariantSelected(productVariant);
   };
 
   return (
@@ -41,7 +49,11 @@ const ProductView = (Product: Product) => {
           dangerouslySetInnerHTML={{ __html: price_html }}
         />
 
-        <Variantions variations={variations} />
+        <Variantions
+          variantSelected={variantSelected}
+          variations={variations}
+          onSelectVariation={handleSelectVariation}
+        />
 
         <Counter
           className="counter"

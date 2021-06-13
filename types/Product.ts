@@ -37,7 +37,7 @@ export type ProductInCartList = Array<ProductInCart>;
 
 export type VariantAttribute = { id: number; name: string; option: string };
 
-export interface Variant {
+export interface ProductVariant {
   attributes: Array<VariantAttribute>;
   backordered: boolean;
   backorders: "no";
@@ -72,4 +72,4 @@ export interface Variant {
   weight: string;
 }
 
-export type ProductVariations = Array<Variant>;
+export type ProductVariations = Array<ProductVariant>;

@@ -1,20 +1,24 @@
-import { ProductVariations } from "types/Product";
+import { ProductVariations, ProductVariant } from "types/Product";
 import { Variantionstyle } from "./styles";
 import Variant from "./Variant";
 
 type Props = {
+  variantSelected: ProductVariant;
   variations?: ProductVariations;
+  onSelectVariation: (v: ProductVariant) => void;
 };
 
 const Variantions = (props: Props) => {
-  const { variations } = props;
+  const { variations, onSelectVariation, variantSelected } = props;
   if (variations && variations.length > 0)
     return (
       <Variantionstyle>
         {variations.map((data) => (
           <Variant
-            {...data}
-            isSelected={data.attributes[0].option === "MARGARITA"}
+            key={data.id}
+            productVariant={data}
+            onSelectVariation={onSelectVariation}
+            isSelected={variantSelected === data}
           />
         ))}
       </Variantionstyle>
