@@ -1,8 +1,10 @@
+import { FooterStyle } from "./styles";
+
 const Footer = (): React.ReactElement => {
   return (
-    <footer>
+    <FooterStyle>
       <p>Footer</p>
-    </footer>
+    </FooterStyle>
   );
 };
 
