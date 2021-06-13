@@ -11,4 +11,8 @@ export const ButtonStyle = styled.button`
   @media (min-width: 480px) {
     font-size: 1.6rem;
   }
+
+  &:active{
+    background-color: grey;
+  }
 `;
