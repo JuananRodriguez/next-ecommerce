@@ -10,7 +10,7 @@ interface Props {
 }
 
 const ProductCard = ({ product }: Props) => {
-  const { name, id, slug, price, images } = product;
+  const { name, id, slug, price_html, images } = product;
   const url = `/products/${slug}`;
   const [firstImage] = images;
 
@@ -46,7 +46,10 @@ const ProductCard = ({ product }: Props) => {
           </h3>
         </a>
       </Link>
-      <span className="price">{price} €</span>
+      <span
+        className="price"
+        dangerouslySetInnerHTML={{ __html: price_html }}
+      />
       <Button className="add-to-cart" role="button" onClick={handleAddToCart}>
         <IoBasketOutline size="1.8rem" />
         <span className="label">Añadir a la cesta</span>
