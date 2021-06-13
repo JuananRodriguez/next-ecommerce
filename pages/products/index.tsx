@@ -1,6 +1,6 @@
 import { ProductCardList } from "@components";
 import { getApiPath } from "utils/getApiPath";
-import { NextApiRequest, GetServerSideProps } from "next";
+import { GetServerSideProps } from "next";
 import { ProductList } from "@domainTypes/Product";
 
 type Props = {
@@ -15,7 +15,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const url = getApiPath(resolvedUrl);
   const res = await fetch(url);
   const data = await res.json();
-
   return {
     props: { data },
   };

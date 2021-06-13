@@ -10,7 +10,9 @@ interface Props {
 }
 
 const ProductCard = ({ product }: Props) => {
-  const { title, id, price, image } = product;
+  const { name, id, price, images } = product;
+  const url = `/products/${id}`;
+  const [firstImage] = images;
 
   const { addToCart } = useCartMutations();
 
@@ -18,18 +20,16 @@ const ProductCard = ({ product }: Props) => {
     addToCart(product, 1);
   };
 
-  const url = `/products/${id}`;
-
   return (
     <ProductCardStyled key={id}>
       <Link href={url} passHref>
         <a>
           <Image
             className="image"
-            src={image}
+            src={firstImage.src}
             width="600"
             height="600"
-            alt={title}
+            alt={name}
             priority={true}
           />
         </a>
@@ -38,7 +38,7 @@ const ProductCard = ({ product }: Props) => {
       <Link href={url} passHref>
         <a>
           <h3 className="name">
-            <strong>{title}</strong>
+            <strong>{name}</strong>
           </h3>
         </a>
       </Link>
