@@ -2,6 +2,7 @@ import { CounterStyle, InputStyle } from "./styles";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 
 interface Props {
+  className?: string;
   value?: number;
   onIncrease: () => void;
   onDecrease: () => void;
@@ -9,13 +10,14 @@ interface Props {
 }
 
 function Counter({
+  className = "",
   value = 0,
   onIncrease,
   onDecrease,
   onChange = () => {},
 }: Props) {
   return (
-    <CounterStyle>
+    <CounterStyle className={className}>
       <button onClick={onDecrease}>
         <AiOutlineMinus size="1.4rem" />
       </button>
