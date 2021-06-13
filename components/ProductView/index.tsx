@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Product, ProductVariant } from "@domainTypes/Product";
 import { ProductViewStyled } from "./styles";
-import { Counter, Variantions } from "@components";
+import { Counter, Variantions, Carousel } from "@components";
 import { useState } from "react";
 
 const ProductView = (Product: Product) => {
@@ -11,7 +11,6 @@ const ProductView = (Product: Product) => {
   >(undefined);
 
   const { name, id, price_html, variations, images = [] } = Product;
-  const [firstImage] = images;
 
   const handleIncreaseQuantity = () => {
     setQuantity(quantity + 1);
@@ -29,7 +28,8 @@ const ProductView = (Product: Product) => {
 
   return (
     <ProductViewStyled key={id}>
-      {firstImage && (
+      <Carousel images={images} />
+      {/* {firstImage && (
         <Image
           className="image"
           layout="responsive"
@@ -39,7 +39,7 @@ const ProductView = (Product: Product) => {
           alt={name}
           priority={true}
         />
-      )}
+      )} */}
 
       <section className="content">
         <h1 className="name">{name}</h1>

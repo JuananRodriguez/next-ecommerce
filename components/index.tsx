@@ -15,6 +15,7 @@ import Counter from "./Counter";
 import EmptyCartMessage from "./EmptyCartMessage";
 import ProductCartPreCheckout from "./ProductCartPreCheckout";
 import Variantions from "./Variantions";
+import Carousel from "./Carousel";
 
 export {
   Header,
@@ -34,4 +35,5 @@ export {
   EmptyCartMessage,
   ProductCartPreCheckout,
   Variantions,
+  Carousel,
 };
