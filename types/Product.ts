@@ -1,11 +1,34 @@
-export type Product = {
-  title: string;
+export interface Image {
+  id: number;
+  date_created: string;
+  date_modified: string;
+  src: string;
+  name?: string;
+  alt?: string;
+  position: number;
+}
+
+export interface Product {
   id: string;
-  category: string;
+  name: string;
+  slug: string;
+  date_created: string;
+  date_modified: string;
+  type: "variable" | "simple";
   price: number;
-  image: string;
+  regular_price: number;
+  sale_price: number;
+  on_sale: boolean;
+  sky: string;
   description: string;
-};
+  related_ids: Array<number>;
+
+  //TODO: redefine
+  categories: Array<Object>;
+  images: Array<Image>;
+  attributes: Array<Object>;
+  variations: Array<Object>;
+}
 export type ProductList = Array<Product>;
 
 export type ProductInCart = Product & { quantity: number };
