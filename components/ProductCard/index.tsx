@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Product } from "@domainTypes/Product";
 import { ProductCardStyled } from "./styles";
-import { ProductReactions } from "@components";
+import { ProductReactions, Button } from "@components";
 import { useCartMutations } from "storage/Cart";
 import { IoBasketOutline } from "react-icons/io5";
 import Link from "next/link";
@@ -43,10 +43,10 @@ const ProductCard = ({ product }: Props) => {
         </a>
       </Link>
       <span className="price">{price} €</span>
-      <button className="add-to-cart" role="button" onClick={handleAddToCart}>
-        <IoBasketOutline size="1.8rem" />{" "}
+      <Button className="add-to-cart" role="button" onClick={handleAddToCart}>
+        <IoBasketOutline size="1.8rem" />
         <span className="label">Añadir a la cesta</span>
-      </button>
+      </Button>
     </ProductCardStyled>
   );
 };

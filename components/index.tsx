@@ -1,6 +1,7 @@
 import Layout from "./Layout";
 import Header from "./Header";
 import Footer from "./Footer";
+import Button from "./Button";
 import ProductCard from "./ProductCard";
 import ProductReactions from "./ProductReactions";
 import ProductCardList from "./ProductCardList";
@@ -22,6 +23,7 @@ export {
   TopBarMenu,
   TopBannerPromo,
   Footer,
+  Button,
   Layout,
   FullLoading,
   ProductCartList,

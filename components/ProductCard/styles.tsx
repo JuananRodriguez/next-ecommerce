@@ -19,7 +19,6 @@ export const ProductCardStyled = styled.div`
 
   & .name,
   & .price,
-  & .add-to-cart,
   & ${ProductReactionsWrapper} {
     font-size: 1.2rem;
     margin-top: 10px;
@@ -39,11 +38,6 @@ export const ProductCardStyled = styled.div`
 
   & > .add-to-cart {
     margin-bottom: 20px;
-    padding: 0.5rem;
-    border: none;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
     & > .label{
       margin-left: 0.25rem;
     }
