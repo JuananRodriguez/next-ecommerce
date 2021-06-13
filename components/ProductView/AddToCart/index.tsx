@@ -1,7 +1,7 @@
 import { FixedBottomPanel, Button } from "@components";
 import { ProductVariant } from "@domainTypes/Product";
 import { useCartMutations } from "@storage/Cart";
-import { variantToProduct } from "utils/variantToProduct.adapter";
+import { variantToProduct } from "adapters/variantToProduct.adapter";
 import { AddToCartStyles } from "./styles";
 
 type Props = {

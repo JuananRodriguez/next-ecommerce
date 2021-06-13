@@ -2,7 +2,7 @@ import { Product, ProductVariant } from "@domainTypes/Product";
 import { ProductViewStyled } from "./styles";
 import { Counter, Variantions, Carousel, FixedBottomPanel } from "@components";
 import { useEffect, useState } from "react";
-import { productToVariant } from "utils/productToVariant.adapter";
+import { productToVariant } from "adapters/productToVariant.adapter";
 import AddToCart from "./AddToCart";
 
 const ProductView = (product: Product) => {
