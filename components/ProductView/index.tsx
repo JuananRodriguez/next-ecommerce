@@ -5,18 +5,16 @@ import { Counter, Variantions } from "@components";
 import { useState } from "react";
 
 const ProductView = (Product: Product) => {
-  const [quantity, setQuantity] = useState(0);
-  const { name, id, price_html, variations, images = [], ...rest } = Product;
+  const [quantity, setQuantity] = useState(1);
+  const { name, id, price_html, variations, images = [] } = Product;
   const [firstImage] = images;
-
-  // console.log(rest);
 
   const handleIncreaseQuantity = () => {
     setQuantity(quantity + 1);
   };
 
   const handleDecreaseQuantity = () => {
-    if (quantity > 0) {
+    if (quantity > 1) {
       setQuantity(quantity - 1);
     }
   };
@@ -26,6 +24,7 @@ const ProductView = (Product: Product) => {
       {firstImage && (
         <Image
           className="image"
+          layout="responsive"
           src={firstImage.src}
           width="300"
           height="300"
@@ -34,20 +33,23 @@ const ProductView = (Product: Product) => {
         />
       )}
 
-      <h3 className="name">{name}</h3>
+      <section className="content">
+        <h1 className="name">{name}</h1>
 
-      <span
-        className="price"
-        dangerouslySetInnerHTML={{ __html: price_html }}
-      />
+        <span
+          className="price"
+          dangerouslySetInnerHTML={{ __html: price_html }}
+        />
 
-      <Variantions variations={variations} />
+        <Variantions variations={variations} />
 
-      <Counter
-        value={quantity}
-        onIncrease={handleIncreaseQuantity}
-        onDecrease={handleDecreaseQuantity}
-      />
+        <Counter
+          className="counter"
+          value={quantity}
+          onIncrease={handleIncreaseQuantity}
+          onDecrease={handleDecreaseQuantity}
+        />
+      </section>
     </ProductViewStyled>
   );
 };

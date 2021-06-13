@@ -3,6 +3,7 @@ import { VariantStyle } from "./Variant/styles";
 
 export const Variantionstyle = styled.div`
   display: flex;
+  margin-top: 1rem;
 
   & ${VariantStyle} {
     &:not(:first-child) {
