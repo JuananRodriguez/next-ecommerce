@@ -3,21 +3,22 @@ import { Product } from "@domainTypes/Product";
 import { ProductViewStyled } from "./styles";
 
 const ProductView = (Product: Product) => {
-  const { title, id, price, image } = Product;
+  const { name, id, price, images } = Product;
+  const [firstImage] = images;
 
   return (
     <ProductViewStyled key={id}>
-      {image && (
+      {firstImage && (
         <Image
           className="image"
-          src={image}
+          src={firstImage.src}
           width="300"
           height="300"
-          alt={title}
+          alt={name}
           priority={true}
         />
       )}
-      <h3 className="name">{title}</h3>
+      <h3 className="name">{name}</h3>
       <span className="price">€ {price}</span>
     </ProductViewStyled>
   );

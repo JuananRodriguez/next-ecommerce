@@ -11,8 +11,8 @@ interface Props {
 }
 
 const ProductCartItem = ({ product }: Props) => {
-  const { name, id, price, images, quantity } = product;
-  const url = `/products/${id}`;
+  const { name, id, slug, price, images, quantity } = product;
+  const url = `/products/${slug}`;
   const [firstImage] = images;
 
   const { addToCart, removeFromCart, decreaseFromCart } = useCartMutations();

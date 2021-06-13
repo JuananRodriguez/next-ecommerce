@@ -1,6 +1,4 @@
-export interface Query {
-  [key: string]: string | number;
-}
+import { Query } from "@domainTypes/Queries";
 
 function serialize(obj: Query) {
   var str = [];
@@ -27,7 +25,7 @@ function fetchFromWoocommerce(url: string, query: Query) {
     redirect: "follow",
   } as RequestInit;
 
-  return fetch(`${url}?${serialize(query)}`, requestOptions);
+  return fetch(`${process.env.WORDPRESS_URL}${url}?${serialize(query)}`, requestOptions);
 }
 
 export { fetchFromWoocommerce };

@@ -10,8 +10,8 @@ interface Props {
 }
 
 const ProductCard = ({ product }: Props) => {
-  const { name, id, price, images } = product;
-  const url = `/products/${id}`;
+  const { name, id, slug, price, images } = product;
+  const url = `/products/${slug}`;
   const [firstImage] = images;
 
   const { addToCart } = useCartMutations();

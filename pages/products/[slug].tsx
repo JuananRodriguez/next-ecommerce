@@ -30,8 +30,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { resolvedUrl } = context;
   const url = getApiPath(resolvedUrl);
   const res = await fetch(url);
-  const data = await res.json();
-
+  const [data] = await res.json();
   return {
     props: { data },
   };
