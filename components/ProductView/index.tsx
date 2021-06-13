@@ -1,16 +1,36 @@
-import Image from "next/image";
 import { Product, ProductVariant } from "@domainTypes/Product";
 import { ProductViewStyled } from "./styles";
 import { Counter, Variantions, Carousel } from "@components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { productToVariant } from "utils/productToVariant.adapter";
 
-const ProductView = (Product: Product) => {
+const ProductView = (product: Product) => {
+  const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [variantSelected, setVariantSelected] = useState<
     ProductVariant | undefined
   >(undefined);
 
-  const { name, id, price_html, variations, images = [] } = Product;
+  const { name, id, type, price_html, variations, images = [] } = product;
+
+  useEffect(() => {
+    if (type === "simple") {
+      console.log(product);
+
+      setVariantSelected(productToVariant(product));
+    }
+  }, [product]);
+
+  useEffect(() => {
+    if (variantSelected) {
+      const { image } = variantSelected;
+      const [uniqueImg] = image;
+      const indexImg = images.findIndex((img) => img.id === uniqueImg.id);
+      if (indexImg !== -1) {
+        setSelectedImage(indexImg);
+      }
+    }
+  }, [variantSelected]);
 
   const handleIncreaseQuantity = () => {
     setQuantity(quantity + 1);
@@ -26,28 +46,30 @@ const ProductView = (Product: Product) => {
     setVariantSelected(productVariant);
   };
 
+  console.log(variantSelected);
+
   return (
     <ProductViewStyled key={id}>
-      <Carousel images={images} />
-      {/* {firstImage && (
-        <Image
-          className="image"
-          layout="responsive"
-          src={firstImage.src}
-          width="300"
-          height="300"
-          alt={name}
-          priority={true}
-        />
-      )} */}
+      <Carousel images={images} selectedImage={selectedImage} />
 
       <section className="content">
         <h1 className="name">{name}</h1>
 
-        <span
-          className="price"
-          dangerouslySetInnerHTML={{ __html: price_html }}
-        />
+        {type === "variable" &&
+          (variantSelected ? (
+            <p>Modelo seleccionado: {variantSelected.attributes[0].option}</p>
+          ) : (
+            <p>Selecciona un modelo</p>
+          ))}
+
+        {variantSelected ? (
+          <p className="price">{variantSelected.price} €</p>
+        ) : (
+          <p
+            className="price"
+            dangerouslySetInnerHTML={{ __html: price_html }}
+          />
+        )}
 
         <Variantions
           variantSelected={variantSelected}

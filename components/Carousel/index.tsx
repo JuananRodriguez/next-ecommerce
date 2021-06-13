@@ -5,10 +5,11 @@ import Image from "next/image";
 
 type Props = {
   images: Array<ImageType>;
+  selectedImage?: number;
 };
 
 const Carousel = (props: Props) => {
-  const { images } = props;
+  const { images, selectedImage = 0 } = props;
 
   return (
     <ReactResponsiveCarousel
@@ -17,9 +18,11 @@ const Carousel = (props: Props) => {
       showThumbs={false}
       showArrows={false}
       infiniteLoop={true}
+      selectedItem={selectedImage}
     >
       {images.map((image) => (
         <Image
+          key={image.id}
           className="image"
           layout="responsive"
           src={image.src}
