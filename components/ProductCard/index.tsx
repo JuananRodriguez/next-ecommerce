@@ -27,10 +27,14 @@ const ProductCard = ({ product }: Props) => {
           <Image
             className="image"
             src={firstImage.src}
-            width="600"
-            height="600"
+            width="400"
+            height="400"
             alt={name}
-            priority={true}
+            // priority={true}
+            // placeholder="blur"
+            // blurDataURL={
+            //   "https://www.pimpampumjoyas.es/wp-content/uploads/2021/05/814AAB45-4282-49A8-9423-8B942DB3A1D4.jpeg"
+            // }
           />
         </a>
       </Link>
