@@ -3,7 +3,7 @@ import { Product } from "@domainTypes/Product";
 import { ProductViewStyled } from "./styles";
 
 const ProductView = (Product: Product) => {
-  const { name, id, price, images } = Product;
+  const { name, id, price, images = [] } = Product;
   const [firstImage] = images;
 
   return (

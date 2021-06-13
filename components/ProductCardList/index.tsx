@@ -3,11 +3,11 @@ import { Product, ProductList } from "@domainTypes/Product";
 import { ProductCardListStyled } from "./styles";
 
 interface Props {
-  products: ProductList;
+  products?: ProductList;
 }
 
 const ProductCardList = (props: Props) => {
-  const { products } = props;
+  const { products = [] } = props;
   return (
     <ProductCardListStyled>
       {products.map((product: Product) => (
