@@ -1,12 +1,13 @@
 import { Product, ProductVariant } from "@domainTypes/Product";
 import { ProductViewStyled } from "./styles";
-import { Counter, Variantions, Carousel } from "@components";
+import { Counter, Variantions, Carousel, FixedBottomPanel } from "@components";
 import { useEffect, useState } from "react";
 import { productToVariant } from "utils/productToVariant.adapter";
+import AddToCart from "./AddToCart";
 
 const ProductView = (product: Product) => {
   const [selectedImage, setSelectedImage] = useState(0);
-  const [quantity, setQuantity] = useState(1);
+  const [selectedQuatity, setQuantity] = useState(1);
   const [variantSelected, setVariantSelected] = useState<
     ProductVariant | undefined
   >(undefined);
@@ -33,12 +34,12 @@ const ProductView = (product: Product) => {
   }, [variantSelected]);
 
   const handleIncreaseQuantity = () => {
-    setQuantity(quantity + 1);
+    setQuantity(selectedQuatity + 1);
   };
 
   const handleDecreaseQuantity = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
+    if (selectedQuatity > 1) {
+      setQuantity(selectedQuatity - 1);
     }
   };
 
@@ -46,7 +47,7 @@ const ProductView = (product: Product) => {
     setVariantSelected(productVariant);
   };
 
-  console.log(variantSelected);
+  console.log(variantSelected, product);
 
   return (
     <ProductViewStyled key={id}>
@@ -55,12 +56,12 @@ const ProductView = (product: Product) => {
       <section className="content">
         <h1 className="name">{name}</h1>
 
-        {type === "variable" &&
+        {/* {type === "variable" &&
           (variantSelected ? (
             <p>Modelo seleccionado: {variantSelected.attributes[0].option}</p>
           ) : (
             <p>Selecciona un modelo</p>
-          ))}
+          ))} */}
 
         {variantSelected ? (
           <p className="price">{variantSelected.price} €</p>
@@ -79,11 +80,18 @@ const ProductView = (product: Product) => {
 
         <Counter
           className="counter"
-          value={quantity}
+          value={selectedQuatity}
           onIncrease={handleIncreaseQuantity}
           onDecrease={handleDecreaseQuantity}
         />
       </section>
+
+      {variantSelected && (
+        <AddToCart
+          variantSelected={variantSelected}
+          selectedQuatity={selectedQuatity}
+        />
+      )}
     </ProductViewStyled>
   );
 };

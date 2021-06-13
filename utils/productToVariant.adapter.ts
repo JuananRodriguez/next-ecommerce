@@ -1,7 +1,22 @@
-import { Product, ProductVariant } from "@domainTypes/Product";
+import {
+  Product,
+  ProductVariant,
+  VariantAttribute,
+} from "@domainTypes/Product";
+
+const nameToAttributes = (name: string): Array<VariantAttribute> => {
+  return [
+    {
+      id: -1,
+      name,
+      option: "",
+    },
+  ];
+};
 
 export const productToVariant = (product: Product): ProductVariant => {
   const {
+    name,
     attributes,
     date_created,
     date_modified,
@@ -17,7 +32,9 @@ export const productToVariant = (product: Product): ProductVariant => {
   } = product;
 
   return {
-    attributes,
+    attributes: Boolean(attributes.length)
+      ? attributes
+      : nameToAttributes(name),
     date_created,
     date_modified,
     dimensions,

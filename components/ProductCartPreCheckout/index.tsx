@@ -1,5 +1,6 @@
 import { Button } from "@components";
 import { ProductCartPreCheckoutStyle } from "./styles";
+import { FixedBottomPanel } from "@components";
 
 interface Props {
   subTotal?: number;
@@ -10,13 +11,15 @@ const ProductCartPreCheckout = (props: Props) => {
 
   if (subTotal > 0)
     return (
-      <ProductCartPreCheckoutStyle>
-        <div className="price-block">
-          <p className="price-title">Importe total</p>
-          <p className="price-amount">{subTotal} €</p>
-        </div>
-        <Button className="checkout-button">Tramitar pedido</Button>
-      </ProductCartPreCheckoutStyle>
+      <FixedBottomPanel>
+        <ProductCartPreCheckoutStyle>
+          <div className="price-block">
+            <p className="price-title">Importe total</p>
+            <p className="price-amount">{subTotal.toFixed(2)} €</p>
+          </div>
+          <Button className="checkout-button">Tramitar pedido</Button>
+        </ProductCartPreCheckoutStyle>
+      </FixedBottomPanel>
     );
 
   return null;

@@ -16,6 +16,7 @@ import EmptyCartMessage from "./EmptyCartMessage";
 import ProductCartPreCheckout from "./ProductCartPreCheckout";
 import Variantions from "./Variantions";
 import Carousel from "./Carousel";
+import FixedBottomPanel from "./FixedBottomPanel";
 
 export {
   Header,
@@ -36,4 +37,5 @@ export {
   ProductCartPreCheckout,
   Variantions,
   Carousel,
+  FixedBottomPanel,
 };
