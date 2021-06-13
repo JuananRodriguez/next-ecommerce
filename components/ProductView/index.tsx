@@ -16,8 +16,6 @@ const ProductView = (product: Product) => {
 
   useEffect(() => {
     if (type === "simple") {
-      console.log(product);
-
       setVariantSelected(productToVariant(product));
     }
   }, [product]);
@@ -46,8 +44,6 @@ const ProductView = (product: Product) => {
   const handleSelectVariation = (productVariant: ProductVariant) => {
     setVariantSelected(productVariant);
   };
-
-  console.log(variantSelected, product);
 
   return (
     <ProductViewStyled key={id}>
