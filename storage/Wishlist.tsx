@@ -68,7 +68,7 @@ function wishlistReducers(
 }
 
 const getWishlistSubTotal = (sum: number, item: Product) => {
-  sum += item.price;
+  sum += parseFloat(item.price);
   return sum;
 };
 

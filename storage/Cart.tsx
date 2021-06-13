@@ -98,7 +98,7 @@ function cartReducers(
 }
 
 const getCartSubTotal = (sum: number, item: CartItemType) => {
-  sum += item.price * item.quantity;
+  sum += parseFloat(item.price) * item.quantity;
   return sum;
 };
 const getCartCount = (sum: number, item: CartItemType) => sum + item.quantity;
