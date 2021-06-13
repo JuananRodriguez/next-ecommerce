@@ -6,9 +6,9 @@ import { useState } from "react";
 
 const ProductView = (Product: Product) => {
   const [quantity, setQuantity] = useState(1);
-  const [variantSelected, setVariantSelected] = useState<ProductVariant | null>(
-    null
-  );
+  const [variantSelected, setVariantSelected] = useState<
+    ProductVariant | undefined
+  >(undefined);
 
   const { name, id, price_html, variations, images = [] } = Product;
   const [firstImage] = images;

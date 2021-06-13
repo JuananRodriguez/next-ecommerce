@@ -3,7 +3,7 @@ import { Variantionstyle } from "./styles";
 import Variant from "./Variant";
 
 type Props = {
-  variantSelected: ProductVariant;
+  variantSelected?: ProductVariant;
   variations?: ProductVariations;
   onSelectVariation: (v: ProductVariant) => void;
 };
