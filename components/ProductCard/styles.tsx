@@ -5,23 +5,17 @@ export const ProductCardStyled = styled.div`
   display: flex;
   flex-direction: column;
 
-  & > div {
-    min-width: 100%;
-
-    @media (min-width: 480px) {
-      border-radius: 15px;
-    }
-  }
-
-  & img {
-    object-fit: cover;
+  & .name,
+  & .price,
+  & .add-to-cart,
+  & ${ProductReactionsWrapper} {
+    font-size: 1.2rem;
   }
 
   & .name,
   & .price,
   & .add-to-cart,
   & ${ProductReactionsWrapper} {
-    font-size: 1.2rem;
     margin-top: 10px;
     margin-left: 10px;
     margin-right: 10px;
@@ -34,12 +28,13 @@ export const ProductCardStyled = styled.div`
   }
 
   & .name {
+    color: #333;
     font-weight: 600;
   }
 
   & > .add-to-cart {
     margin-bottom: 20px;
-    & > .label{
+    & > .label {
       margin-left: 0.25rem;
     }
   }

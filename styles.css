@@ -4,3 +4,7 @@
   grid-template-rows: auto 1fr auto;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+a {
+  text-decoration: none;
+}
