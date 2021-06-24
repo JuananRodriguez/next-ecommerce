@@ -4,7 +4,7 @@ const Header = (): React.ReactElement => {
   return (
     <header>
       <TopBarMenu />
-      <TopBannerPromo />
+      {/* <TopBannerPromo /> */}
     </header>
   );
 };
