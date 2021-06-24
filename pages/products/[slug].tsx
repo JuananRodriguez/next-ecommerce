@@ -1,6 +1,6 @@
 import fetch from "isomorphic-unfetch";
 import { getApiPath } from "utils/getApiPath";
-import ProductView from "components/ProductView";
+import { ProductView } from "@components";
 import { Product } from "@domainTypes/Product";
 import { GetStaticPropsContextWithParams } from "@domainTypes/Queries";
 

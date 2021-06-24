@@ -46,41 +46,45 @@ const ProductView = (product: Product) => {
   };
 
   return (
-    <ProductViewStyled key={id}>
-      <Carousel images={images} selectedImage={selectedImage} />
+    <>
+      <ProductViewStyled key={id}>
+        <section className="images">
+          <Carousel images={images} selectedImage={selectedImage} />
+        </section>
 
-      <section className="content">
-        <h1 className="name">{name}</h1>
+        <section className="content">
+          <h1 className="name">{name}</h1>
 
-        {/* {type === "variable" &&
+          {/* {type === "variable" &&
           (variantSelected ? (
             <p>Modelo seleccionado: {variantSelected.attributes[0].option}</p>
           ) : (
             <p>Selecciona un modelo</p>
           ))} */}
 
-        {variantSelected ? (
-          <p className="price">{variantSelected.price} €</p>
-        ) : (
-          <p
-            className="price"
-            dangerouslySetInnerHTML={{ __html: price_html }}
+          {variantSelected ? (
+            <p className="price">{variantSelected.price} €</p>
+          ) : (
+            <p
+              className="price"
+              dangerouslySetInnerHTML={{ __html: price_html }}
+            />
+          )}
+
+          <Variantions
+            variantSelected={variantSelected}
+            variations={variations}
+            onSelectVariation={handleSelectVariation}
           />
-        )}
 
-        <Variantions
-          variantSelected={variantSelected}
-          variations={variations}
-          onSelectVariation={handleSelectVariation}
-        />
-
-        <Counter
-          className="counter"
-          value={selectedQuatity}
-          onIncrease={handleIncreaseQuantity}
-          onDecrease={handleDecreaseQuantity}
-        />
-      </section>
+          <Counter
+            className="counter"
+            value={selectedQuatity}
+            onIncrease={handleIncreaseQuantity}
+            onDecrease={handleDecreaseQuantity}
+          />
+        </section>
+      </ProductViewStyled>
 
       {variantSelected && (
         <AddToCart
@@ -88,7 +92,7 @@ const ProductView = (product: Product) => {
           selectedQuatity={selectedQuatity}
         />
       )}
-    </ProductViewStyled>
+    </>
   );
 };
 

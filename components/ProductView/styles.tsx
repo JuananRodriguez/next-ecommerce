@@ -1,8 +1,13 @@
 import styled from "styled-components";
 
 export const ProductViewStyled = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1600px;
+  margin: auto;
 
   & .content {
+    flex: 1 1 350px;
     padding: 1rem;
 
     & .name,
@@ -18,8 +23,14 @@ export const ProductViewStyled = styled.div`
     }
 
     & .counter {
-        margin-top: 0.5rem;
-        margin-left: 3px;
+      margin-top: 0.5rem;
+      margin-left: 3px;
     }
   }
+
+  & .images {
+    padding: 1rem;
+    flex: 1 1 350px;
+  }
+
 `;
