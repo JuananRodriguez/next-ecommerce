@@ -1,9 +1,16 @@
 import { Product } from "@domainTypes/Product";
 import { ProductCardStyled } from "./styles";
-import { ProductReactions, Button, Carousel } from "@components";
+import {
+  ProductReactions,
+  Button,
+  Carousel,
+  FullModal,
+  ProductView,
+} from "@components";
 import { useCartMutations } from "storage/Cart";
 import { IoBasketOutline } from "react-icons/io5";
 import Link from "next/link";
+
 interface Props {
   product: Product;
 }
@@ -37,10 +44,20 @@ const ProductCard = ({ product }: Props) => {
         className="price"
         dangerouslySetInnerHTML={{ __html: price_html }}
       />
-      <Button className="add-to-cart" role="button" onClick={handleAddToCart}>
-        <IoBasketOutline size="1.8rem" />
-        <span className="label">Añadir a la cesta</span>
-      </Button>
+
+      <FullModal
+        RenderContent={({ toggleOpen }) => <ProductView {...product} />}
+        RenderButton={({ toggleOpen }) => (
+          <Button
+            className="add-to-cart"
+            role="button"
+            onClick={() => toggleOpen((isOpen) => !isOpen)}
+          >
+            <IoBasketOutline size="1.8rem" />
+            <span className="label">Seleccionar modelo</span>
+          </Button>
+        )}
+      ></FullModal>
     </ProductCardStyled>
   );
 };

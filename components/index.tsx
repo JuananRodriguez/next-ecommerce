@@ -3,6 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Button from "./Button";
 import ProductCard from "./ProductCard";
+import ProductView from "./ProductView";
 import ProductReactions from "./ProductReactions";
 import ProductCardList from "./ProductCardList";
 import ResetStyle from "./ResetStyle";
@@ -17,11 +18,14 @@ import ProductCartPreCheckout from "./ProductCartPreCheckout";
 import Variantions from "./Variantions";
 import Carousel from "./Carousel";
 import FixedBottomPanel from "./FixedBottomPanel";
+import FullModal from "./FullModal";
 
 export {
+  FullModal,
   Header,
   ResetStyle,
   ProductCard,
+  ProductView,
   ProductReactions,
   ProductCardList,
   TopBarMenu,
