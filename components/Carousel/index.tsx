@@ -30,6 +30,8 @@ const Carousel = (props: Props) => {
           height="300"
           alt={image.name}
           priority={true}
+          placeholder="blur"
+          blurDataURL="/images/deafult-placeholder.png"
         />
       ))}
     </ReactResponsiveCarousel>
