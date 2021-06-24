@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Product } from "@domainTypes/Product";
 import { ProductCardStyled } from "./styles";
 import { ProductReactions, Button, Carousel } from "@components";
