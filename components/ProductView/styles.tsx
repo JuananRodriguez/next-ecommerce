@@ -24,7 +24,7 @@ export const ProductViewStyled = styled.div`
 
   & .price {
     font-size: 1.4rem;
-    margin-top: 2.2rem;
+    margin-top: 1.8rem;
     margin-bottom: 2rem;
 
     @media (min-width: 480px) {

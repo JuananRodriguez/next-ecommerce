@@ -1,6 +1,12 @@
 import { Product, ProductVariant } from "@domainTypes/Product";
 import { ProductViewStyled } from "./styles";
-import { Counter, Variantions, Carousel, FixedBottomPanel } from "@components";
+import {
+  Counter,
+  Variantions,
+  Carousel,
+  FixedBottomPanel,
+  ProductReactions,
+} from "@components";
 import { useEffect, useState } from "react";
 import { productToVariant } from "adapters/productToVariant.adapter";
 import AddToCart from "./AddToCart";
@@ -11,8 +17,6 @@ const ProductView = (product: Product) => {
   const [variantSelected, setVariantSelected] = useState<
     ProductVariant | undefined
   >(undefined);
-
-  console.log(product);
 
   const {
     name,
@@ -66,6 +70,8 @@ const ProductView = (product: Product) => {
         </section>
 
         <section className="content">
+          <ProductReactions product={product} />
+
           {variantSelected ? (
             <p className="price">{variantSelected.price} €</p>
           ) : (

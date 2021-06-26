@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ProductReactionsWrapper = styled.ul`
-  display: flex;
+  display: inline-flex;
 
   & li:not(:last-child) {
     margin-right: 5px;
