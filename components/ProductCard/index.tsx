@@ -26,7 +26,7 @@ const ProductCard = ({ product }: Props) => {
   };
 
   return (
-    <ProductCardStyled key={id}>
+    <ProductCardStyled key={id} className="product-card">
       <Link href={url} passHref>
         <a>
           <Carousel images={images} />

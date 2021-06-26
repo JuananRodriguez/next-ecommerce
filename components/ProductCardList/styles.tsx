@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { ProductCardStyled } from "../ProductCard/styles";
 
 export const ProductCardListStyled = styled.div`
   display: flex;
@@ -7,7 +6,7 @@ export const ProductCardListStyled = styled.div`
   max-width: 1600px;
   margin: auto;
 
-  & > ${ProductCardStyled} {
+  & .product-card {
     margin: 0;
     width: 100%;
     margin-bottom: 0.8rem;
