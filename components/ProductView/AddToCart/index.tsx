@@ -32,7 +32,7 @@ const AddToCart = ({ variantSelected, selectedQuatity, className }: Props) => {
             {variantSelected.attributes[0].name} -{" "}
             {variantSelected.attributes[0].option}
           </p>
-          <p>{multiplyPrice(selectedQuatity, variantSelected.price)}</p>
+          <p>{multiplyPrice(selectedQuatity, variantSelected.price)} €</p>
         </div>
       )}
 
