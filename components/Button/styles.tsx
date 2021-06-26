@@ -7,12 +7,13 @@ export const ButtonStyle = styled.button`
   justify-content: center;
   align-items: flex-end;
   font-size: 1.2rem;
+  cursor: pointer;
 
   @media (min-width: 480px) {
     font-size: 1.6rem;
   }
 
-  &:active{
+  &:active {
     background-color: grey;
   }
 `;
