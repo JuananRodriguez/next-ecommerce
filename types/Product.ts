@@ -35,6 +35,7 @@ export type Product = ProductBase & {
   slug: string;
   price_html: string;
   description: string;
+  short_description: string;
   related_ids: Array<number>;
   variations: ProductVariations;
   //TODO: redefine
