@@ -6,9 +6,6 @@ interface TopBarStyleProps {
 }
 
 export const TopBarStyle = styled("div")`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   position: fixed;
   left: 0;
   background-color: white;
@@ -30,18 +27,27 @@ export const TopBarStyle = styled("div")`
     bottom: 0;
   `}
 
-  & .checkout {
+  & .content {
     display: flex;
     align-items: center;
-  }
+    justify-content: space-between;
+    max-width: 1600px;
+    width: 100%;
+    margin: auto;
 
-  & .icon-and-count {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+    & .checkout {
+      display: flex;
+      align-items: center;
+    }
 
-    &:not(:last-child) {
-      margin-right: 0.5rem;
+    & .icon-and-count {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      &:not(:last-child) {
+        margin-right: 0.5rem;
+      }
     }
   }
 `;

@@ -12,32 +12,34 @@ const TopBarMenu = () => {
 
   return (
     <TopBarStyle top>
-      <div className="menu">
-        <HiOutlineMenuAlt1 size="1.8rem" />
-      </div>
-      <Link href="/products" passHref>
-        <LogotypeAnchor>
-          <Image
-            src="/images/logotype.png"
-            alt="pimpampum-logotype"
-            width="180"
-            height="54"
-          />
-        </LogotypeAnchor>
-      </Link>
-      <div className="checkout">
-        <Link href="/wishlist" passHref>
-          <a className="icon-and-count">
-            <IoHeartOutline size="1.4rem" />
-            <span>{productInWishList}</span>
-          </a>
+      <div className="content">
+        <div className="menu">
+          <HiOutlineMenuAlt1 size="1.8rem" />
+        </div>
+        <Link href="/products" passHref>
+          <LogotypeAnchor>
+            <Image
+              src="/images/logotype.png"
+              alt="pimpampum-logotype"
+              width="180"
+              height="54"
+            />
+          </LogotypeAnchor>
         </Link>
-        <Link href="/cart" passHref>
-          <a className="icon-and-count">
-            <IoBasketOutline size="1.4rem" />
-            <span>{productInCart}</span>
-          </a>
-        </Link>
+        <div className="checkout">
+          <Link href="/wishlist" passHref>
+            <a className="icon-and-count">
+              <IoHeartOutline size="1.4rem" />
+              <span>{productInWishList}</span>
+            </a>
+          </Link>
+          <Link href="/cart" passHref>
+            <a className="icon-and-count">
+              <IoBasketOutline size="1.4rem" />
+              <span>{productInCart}</span>
+            </a>
+          </Link>
+        </div>
       </div>
     </TopBarStyle>
   );
