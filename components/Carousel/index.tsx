@@ -24,14 +24,14 @@ const Carousel = (props: Props) => {
         <Image
           key={image.id}
           className="image"
-          layout="responsive"
+          // layout="responsive"
           src={image.src}
-          width="300"
-          height="300"
+          width="350"
+          height="350"
           alt={image.name}
           priority={true}
-          placeholder="blur"
-          blurDataURL="/images/deafult-placeholder.png"
+          // placeholder="blur"
+          // blurDataURL="/images/deafult-placeholder.png"
         />
       ))}
     </ReactResponsiveCarousel>
