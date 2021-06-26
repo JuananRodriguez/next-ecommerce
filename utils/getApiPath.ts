@@ -4,7 +4,8 @@ type Params = {
 };
 export const getApiPath = ({ dirname, url = "" }: Params): string => {
   const route = dirname.split("pages").pop();
-  const resolvedUrl = `${route}/${url}`;
+  const lastChar = dirname[dirname.length - 1];
+  const resolvedUrl = lastChar !== "/" ? `${route}/${url}` : `${route}${url}`;
 
   const baseUrl =
     process.env.NODE_ENV !== "development"
