@@ -1,11 +1,13 @@
-import { FixedBottomPanel, Button } from "@components";
+import { Button } from "@components";
 import { ProductVariant } from "@domainTypes/Product";
 import { useCartMutations } from "@storage/Cart";
 import { variantToProduct } from "adapters/variantToProduct.adapter";
 import { AddToCartStyles } from "./styles";
+import cls from "classnames";
 
 type Props = {
-  variantSelected: ProductVariant;
+  className?: string;
+  variantSelected?: ProductVariant;
   selectedQuatity: number;
 };
 
@@ -14,16 +16,17 @@ const multiplyPrice = (quantity: number, price: string): string => {
   return result.toFixed(2);
 };
 
-const AddToCart = ({ variantSelected, selectedQuatity }: Props) => {
+const AddToCart = ({ variantSelected, selectedQuatity, className }: Props) => {
   const { addToCart } = useCartMutations();
 
   const handleAddToCart = () => {
-    addToCart(variantToProduct(variantSelected), selectedQuatity);
+    variantSelected &&
+      addToCart(variantToProduct(variantSelected), selectedQuatity);
   };
 
   return (
-    <FixedBottomPanel>
-      <AddToCartStyles>
+    <AddToCartStyles className={cls("add-to-cart", className)}>
+      {variantSelected && (
         <div className="price-block">
           <p>
             {variantSelected.attributes[0].name} -{" "}
@@ -31,11 +34,16 @@ const AddToCart = ({ variantSelected, selectedQuatity }: Props) => {
           </p>
           <p>{multiplyPrice(selectedQuatity, variantSelected.price)}</p>
         </div>
-        <Button className="cart-button" onClick={handleAddToCart}>
-          Añadir al carrito
-        </Button>
-      </AddToCartStyles>
-    </FixedBottomPanel>
+      )}
+
+      <Button
+        className="cart-button"
+        onClick={handleAddToCart}
+        disabled={Boolean(!variantSelected)}
+      >
+        {variantSelected ? "Añadir al carrito" : "Seleccina un modelo"}
+      </Button>
+    </AddToCartStyles>
   );
 };
 

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export const AddToCartStyles = styled("div")`
- & .price-block {
+export const AddToCartStyles = styled.div`
+  & .price-block {
     font-size: 1.125rem;
     line-height: 1.25rem;
     display: flex;

@@ -12,7 +12,18 @@ const ProductView = (product: Product) => {
     ProductVariant | undefined
   >(undefined);
 
-  const { name, id, type, price_html, variations, images = [] } = product;
+  console.log(product);
+
+  const {
+    name,
+    id,
+    type,
+    price_html,
+    variations,
+    images = [],
+    short_description,
+    description,
+  } = product;
 
   useEffect(() => {
     if (type === "simple") {
@@ -48,20 +59,13 @@ const ProductView = (product: Product) => {
   return (
     <>
       <ProductViewStyled key={id}>
+        <h1 className="name">{name}</h1>
+
         <section className="images">
-          <Carousel images={images} selectedImage={selectedImage} />
+          <Carousel images={images} selectedImage={selectedImage} size="600" />
         </section>
 
         <section className="content">
-          <h1 className="name">{name}</h1>
-
-          {/* {type === "variable" &&
-          (variantSelected ? (
-            <p>Modelo seleccionado: {variantSelected.attributes[0].option}</p>
-          ) : (
-            <p>Selecciona un modelo</p>
-          ))} */}
-
           {variantSelected ? (
             <p className="price">{variantSelected.price} €</p>
           ) : (
@@ -70,6 +74,13 @@ const ProductView = (product: Product) => {
               dangerouslySetInnerHTML={{ __html: price_html }}
             />
           )}
+
+          {type === "variable" &&
+            (variantSelected ? (
+              <p>Modelo seleccionado: {variantSelected.attributes[0].option}</p>
+            ) : (
+              <p>Selecciona un modelo</p>
+            ))}
 
           <Variantions
             variantSelected={variantSelected}
@@ -83,15 +94,32 @@ const ProductView = (product: Product) => {
             onIncrease={handleIncreaseQuantity}
             onDecrease={handleDecreaseQuantity}
           />
+
+          <div
+            className="short-description"
+            dangerouslySetInnerHTML={{ __html: short_description }}
+          />
+
+          <AddToCart
+            variantSelected={variantSelected}
+            selectedQuatity={selectedQuatity}
+          />
+        </section>
+
+        <section className="specifications">
+          <div
+            className="description"
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
         </section>
       </ProductViewStyled>
 
-      {variantSelected && (
+      <FixedBottomPanel>
         <AddToCart
           variantSelected={variantSelected}
           selectedQuatity={selectedQuatity}
         />
-      )}
+      </FixedBottomPanel>
     </>
   );
 };
