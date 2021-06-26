@@ -35,6 +35,7 @@ export const variantToProduct = (variant: ProductVariant): Product => {
     name: attributesToName(attributes),
     type: "simple" as "variable" | "simple",
     slug: "",
+    short_description: "",
     price_html: setHtmlPrice(price),
     description: "",
     related_ids: [],
