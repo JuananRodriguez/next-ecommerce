@@ -6,10 +6,11 @@ import Image from "next/image";
 type Props = {
   images: Array<ImageType>;
   selectedImage?: number;
+  size?: string;
 };
 
 const Carousel = (props: Props) => {
-  const { images, selectedImage = 0 } = props;
+  const { images, selectedImage = 0, size = 350 } = props;
 
   return (
     <ReactResponsiveCarousel
@@ -26,8 +27,8 @@ const Carousel = (props: Props) => {
           className="image"
           // layout="responsive"
           src={image.src}
-          width="350"
-          height="350"
+          width={size}
+          height={size}
           alt={image.name}
           priority={true}
           // placeholder="blur"
