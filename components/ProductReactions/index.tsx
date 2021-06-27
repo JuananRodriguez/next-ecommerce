@@ -31,11 +31,18 @@ const ProductReactions = ({ product }: Props) => {
     );
   };
 
+  const handleShareProduct = () =>
+    navigator
+      .share({
+        url: window.location.href,
+      })
+      .catch((err) => console.log(err));
+
   return (
     <ProductReactionsWrapper>
       <li>{renderWishlistIcon()}</li>
       <li>
-        <IoShareSocialOutline size="1.8rem" />
+        <IoShareSocialOutline size="1.8rem" onClick={handleShareProduct} />
       </li>
     </ProductReactionsWrapper>
   );
