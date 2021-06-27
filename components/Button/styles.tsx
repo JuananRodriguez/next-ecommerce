@@ -13,12 +13,12 @@ export const ButtonStyle = styled.button`
     font-size: 1.6rem;
   }
 
-  &:hover {
+  &:enabled:hover {
     background-color: black;
     color: white;
   }
 
-  &:active {
+  &:enabled:active  {
     background-color: grey;
   }
 `;
