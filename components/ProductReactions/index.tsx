@@ -33,11 +33,11 @@ const ProductReactions = ({ product }: Props) => {
   };
 
   const handleShareProduct = () => {
-    const { name, slug, description } = product;
+    const { name, slug } = product;
     console.log(product);
     return navigator
       .share({
-        url: `${getBaseUrl()}product/${slug}`,
+        url: `${getBaseUrl()}products/${slug}`,
         title: name,
         text: "Me encata compartir esto contigo!!",
       })
