@@ -10,8 +10,12 @@ import {
 import { useEffect, useState } from "react";
 import { productToVariant } from "adapters/productToVariant.adapter";
 import AddToCart from "./AddToCart";
+import { useLayoutDimensions } from "hooks/useLayoutDimensions";
 
 const ProductView = (product: Product) => {
+  const { isDesktop, isMobile, isTablet, isLittleTablet } =
+    useLayoutDimensions();
+    
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedQuatity, setQuantity] = useState(1);
   const [variantSelected, setVariantSelected] = useState<
@@ -106,10 +110,12 @@ const ProductView = (product: Product) => {
             dangerouslySetInnerHTML={{ __html: short_description }}
           />
 
-          <AddToCart
-            variantSelected={variantSelected}
-            selectedQuatity={selectedQuatity}
-          />
+          {(isDesktop || isTablet) && (
+            <AddToCart
+              variantSelected={variantSelected}
+              selectedQuatity={selectedQuatity}
+            />
+          )}
         </section>
 
         <section className="specifications">
@@ -120,12 +126,14 @@ const ProductView = (product: Product) => {
         </section>
       </ProductViewStyled>
 
-      <FixedBottomPanel>
-        <AddToCart
-          variantSelected={variantSelected}
-          selectedQuatity={selectedQuatity}
-        />
-      </FixedBottomPanel>
+      {(isMobile || isLittleTablet) && (
+        <FixedBottomPanel>
+          <AddToCart
+            variantSelected={variantSelected}
+            selectedQuatity={selectedQuatity}
+          />
+        </FixedBottomPanel>
+      )}
     </>
   );
 };
