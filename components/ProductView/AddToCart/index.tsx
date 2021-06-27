@@ -4,13 +4,14 @@ import { useCartMutations } from "@storage/Cart";
 import { variantToProduct } from "adapters/variantToProduct.adapter";
 import { AddToCartStyles } from "./styles";
 import cls from "classnames";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import { AddedToCartLabel } from "./AddedToCartLabel";
 
 type Props = {
   className?: string;
   variantSelected?: ProductVariant;
   selectedQuatity: number;
+  callbackAfterAddToCart?: Function;
 };
 
 const multiplyPrice = (quantity: number, price: string): string => {
@@ -18,26 +19,32 @@ const multiplyPrice = (quantity: number, price: string): string => {
   return result.toFixed(2);
 };
 
-const AddToCart = ({ variantSelected, selectedQuatity, className }: Props) => {
+const AddToCart = ({
+  variantSelected,
+  selectedQuatity,
+  className,
+  callbackAfterAddToCart,
+}: Props) => {
   const { addToCart } = useCartMutations();
-  const [isRecentAdded, setIsRecentAdded] = useState<Boolean>(false);
+  const [isRecentAdded, setIsRecentAdded] = useState<Boolean>(true);
 
   useEffect(() => {
     isRecentAdded &&
       setTimeout(() => {
         setIsRecentAdded(false);
-      }, 2500);
+      }, 3000);
   }, [isRecentAdded]);
 
   const handleAddToCart = () => {
     variantSelected &&
       addToCart(variantToProduct(variantSelected), selectedQuatity);
     setIsRecentAdded(true);
+    callbackAfterAddToCart && callbackAfterAddToCart();
   };
 
   const renderContentButton = () => {
     if (isRecentAdded) {
-      return "Añadido al carrito";
+      return <AddedToCartLabel />;
     }
 
     if (variantSelected) {
@@ -62,7 +69,7 @@ const AddToCart = ({ variantSelected, selectedQuatity, className }: Props) => {
       <Button
         className="cart-button"
         onClick={handleAddToCart}
-        disabled={Boolean(!variantSelected)}
+        disabled={Boolean(!variantSelected) || Boolean(isRecentAdded)}
       >
         {renderContentButton()}
       </Button>

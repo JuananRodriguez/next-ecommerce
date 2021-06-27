@@ -63,6 +63,11 @@ const ProductView = (product: Product) => {
     }
   };
 
+  const cleanSelectedItem = () => {
+    setVariantSelected(undefined);
+    setQuantity(1);
+  };
+
   const handleSelectVariation = (productVariant: ProductVariant) => {
     setVariantSelected(productVariant);
   };
@@ -152,6 +157,7 @@ const ProductView = (product: Product) => {
             <AddToCart
               variantSelected={variantSelected}
               selectedQuatity={selectedQuatity}
+              callbackAfterAddToCart={cleanSelectedItem}
             />
           )}
         </section>
@@ -169,6 +175,7 @@ const ProductView = (product: Product) => {
           <AddToCart
             variantSelected={variantSelected}
             selectedQuatity={selectedQuatity}
+            callbackAfterAddToCart={cleanSelectedItem}
           />
         </FixedBottomPanel>
       )}

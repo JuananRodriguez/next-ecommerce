@@ -22,11 +22,18 @@ const animations: Animations = {
   tick: TICK,
 };
 
-export const AnimateIcon = ({ icon, height = 50, width = 50 }: Props) => {
+export const AnimateIcon = ({
+  icon,
+  height = 50,
+  width = 50,
+  ...props
+}: Props) => {
   const mergedOptions = {
     ...defaultOptions,
     animationData: animations[icon],
   } as Options;
 
-  return <Lottie options={mergedOptions} height={height} width={width} />;
+  return (
+    <Lottie {...props} options={mergedOptions} height={height} width={width} />
+  );
 };
