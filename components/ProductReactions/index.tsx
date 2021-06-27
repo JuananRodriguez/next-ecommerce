@@ -6,6 +6,7 @@ import {
   IoHeartSharp,
   IoShareSocialOutline,
 } from "react-icons/io5";
+import { getBaseUrl } from "utils/getBaseUrl";
 interface Props {
   product: Product;
 }
@@ -31,12 +32,17 @@ const ProductReactions = ({ product }: Props) => {
     );
   };
 
-  const handleShareProduct = () =>
-    navigator
+  const handleShareProduct = () => {
+    const { name, slug, description } = product;
+    console.log(product);
+    return navigator
       .share({
-        url: window.location.href,
+        url: `${getBaseUrl()}product/${slug}`,
+        title: name,
+        text: description,
       })
       .catch((err) => console.log(err));
+  };
 
   return (
     <ProductReactionsWrapper>
