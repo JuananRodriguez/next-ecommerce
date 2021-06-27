@@ -10,7 +10,7 @@ const MyApp = ({ Component, pageProps }: AppProps): React.ReactNode => {
       <ResetStyle />
       <CartProvider>
         <WishListProvider>
-          <FullLoading />
+          {/* <FullLoading /> */}
           <Header />
           <Layout>
             <Component {...pageProps} />
