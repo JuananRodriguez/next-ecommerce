@@ -1,37 +1,13 @@
 import { ProductReactionsWrapper } from "./styles";
-import { useWishlist, useWishlistMutations } from "storage/Wishlist";
+import { WishListIcon } from "./WishlistIcon";
 import { Product } from "@domainTypes/Product";
-import {
-  IoHeartOutline,
-  IoHeartSharp,
-  IoShareSocialOutline,
-} from "react-icons/io5";
+import { IoShareSocialOutline } from "react-icons/io5";
 import { getBaseUrl } from "utils/getBaseUrl";
 interface Props {
   product: Product;
 }
 
 const ProductReactions = ({ product }: Props) => {
-  const { itemsById } = useWishlist();
-  const { addToWishlist, removeFromWishlist } = useWishlistMutations();
-
-  const handleAddToWishList = () => {
-    addToWishlist(product);
-  };
-
-  const handleRemoveFromWishList = () => {
-    removeFromWishlist(product);
-  };
-
-  const renderWishlistIcon = () => {
-    const isInWishlist = Boolean(itemsById[product.id]);
-    return isInWishlist ? (
-      <IoHeartSharp onClick={handleRemoveFromWishList} size="1.8rem" />
-    ) : (
-      <IoHeartOutline onClick={handleAddToWishList} size="1.8rem" />
-    );
-  };
-
   const handleShareProduct = () => {
     const { name, slug } = product;
     console.log(product);
@@ -46,7 +22,9 @@ const ProductReactions = ({ product }: Props) => {
 
   return (
     <ProductReactionsWrapper>
-      <li>{renderWishlistIcon()}</li>
+      <li>
+        <WishListIcon product={product} />
+      </li>
       <li>
         <IoShareSocialOutline size="1.8rem" onClick={handleShareProduct} />
       </li>
