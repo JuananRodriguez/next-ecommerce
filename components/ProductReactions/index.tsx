@@ -39,7 +39,7 @@ const ProductReactions = ({ product }: Props) => {
       .share({
         url: `${getBaseUrl()}product/${slug}`,
         title: name,
-        text: description,
+        text: "Me encata compartir esto contigo!!",
       })
       .catch((err) => console.log(err));
   };
