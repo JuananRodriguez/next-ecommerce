@@ -26,7 +26,7 @@ const AddToCart = ({
   callbackAfterAddToCart,
 }: Props) => {
   const { addToCart } = useCartMutations();
-  const [isRecentAdded, setIsRecentAdded] = useState<Boolean>(true);
+  const [isRecentAdded, setIsRecentAdded] = useState<Boolean>(false);
 
   useEffect(() => {
     isRecentAdded &&
