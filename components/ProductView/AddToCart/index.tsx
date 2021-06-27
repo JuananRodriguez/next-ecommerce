@@ -4,6 +4,8 @@ import { useCartMutations } from "@storage/Cart";
 import { variantToProduct } from "adapters/variantToProduct.adapter";
 import { AddToCartStyles } from "./styles";
 import cls from "classnames";
+import { useState } from "react";
+import { useEffect } from "react";
 
 type Props = {
   className?: string;
@@ -18,10 +20,31 @@ const multiplyPrice = (quantity: number, price: string): string => {
 
 const AddToCart = ({ variantSelected, selectedQuatity, className }: Props) => {
   const { addToCart } = useCartMutations();
+  const [isRecentAdded, setIsRecentAdded] = useState<Boolean>(false);
+
+  useEffect(() => {
+    isRecentAdded &&
+      setTimeout(() => {
+        setIsRecentAdded(false);
+      }, 2500);
+  }, [isRecentAdded]);
 
   const handleAddToCart = () => {
     variantSelected &&
       addToCart(variantToProduct(variantSelected), selectedQuatity);
+    setIsRecentAdded(true);
+  };
+
+  const renderContentButton = () => {
+    if (isRecentAdded) {
+      return "Añadido al carrito";
+    }
+
+    if (variantSelected) {
+      return "Añadir al carrito";
+    }
+
+    return "Seleccina un modelo";
   };
 
   return (
@@ -41,7 +64,7 @@ const AddToCart = ({ variantSelected, selectedQuatity, className }: Props) => {
         onClick={handleAddToCart}
         disabled={Boolean(!variantSelected)}
       >
-        {variantSelected ? "Añadir al carrito" : "Seleccina un modelo"}
+        {renderContentButton()}
       </Button>
     </AddToCartStyles>
   );

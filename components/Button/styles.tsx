@@ -13,6 +13,11 @@ export const ButtonStyle = styled.button`
     font-size: 1.6rem;
   }
 
+  &:hover {
+    background-color: black;
+    color: white;
+  }
+
   &:active {
     background-color: grey;
   }
