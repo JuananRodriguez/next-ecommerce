@@ -1,14 +1,25 @@
-import { useEffect, useRef, useState } from "react";
-import lottie, { AnimationItem } from "lottie-web";
 import { useWishlist, useWishlistMutations } from "storage/Wishlist";
 import { Product } from "@domainTypes/Product";
+import { useAnimation } from "hooks/useAnimation";
+import { useEffect } from "react";
 
 type Props = { product: Product };
 
 export const WishListIcon = ({ product }: Props) => {
+  const [AnimationComponent, lottieAnimation] = useAnimation({
+    speed: 3,
+    path: "/lotties/heart.json",
+  });
+
   const { addToWishlist, removeFromWishlist } = useWishlistMutations();
   const { itemsById } = useWishlist();
   const isInWishlist = Boolean(itemsById[product.id]);
+
+  useEffect(() => {
+    if (lottieAnimation && isInWishlist) {
+      lottieAnimation.goToAndStop(60, true);
+    }
+  }, [lottieAnimation]);
 
   const handleAddToWishList = () => {
     addToWishlist(product);
@@ -18,39 +29,16 @@ export const WishListIcon = ({ product }: Props) => {
     removeFromWishlist(product);
   };
 
-  const refContainer = useRef<HTMLDivElement | null>(null);
-  const refAnimation = useRef<AnimationItem | null>(null);
-
   const handleToggle = () => {
-    refAnimation.current?.setDirection(isInWishlist ? -1 : 1);
-    refAnimation.current?.play();
+    lottieAnimation?.setDirection(isInWishlist ? -1 : 1);
+    lottieAnimation?.play();
     isInWishlist ? handleRemoveFromWishList() : handleAddToWishList();
   };
 
-  useEffect(() => {
-    if (refContainer?.current) {
-      refAnimation.current = lottie.loadAnimation({
-        container: refContainer.current,
-        renderer: "svg",
-        loop: false,
-        autoplay: false,
-        path: "/lotties/heart.json",
-      });
-      refAnimation.current.setSpeed(2);
-
-      if (isInWishlist) {
-        refAnimation.current.goToAndStop(60, true);
-      }
-
-      return () => refAnimation.current?.destroy();
-    }
-  }, []);
-
   return (
-    <div
+    <AnimationComponent
       className="wishlist-icon"
       style={{ height: 50, width: 50 }}
-      ref={refContainer}
       onClick={handleToggle}
     />
   );
