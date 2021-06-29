@@ -10,7 +10,6 @@ interface Props {
 const ProductReactions = ({ product }: Props) => {
   const handleShareProduct = () => {
     const { name, slug } = product;
-    console.log(product);
     return navigator
       .share({
         url: `${getBaseUrl()}products/${slug}`,

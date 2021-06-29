@@ -22,9 +22,7 @@ const EntryPoint = ({ data }: Props) => {
     };
 
     if(!isFetching){
-      console.log('creado')
     const getProducts = async (): Promise<void> => {
-      console.log("products dentro", products.length);
       setIsFetching(true);
       
       const url = getApiPath({ dirname: __dirname, url: "products" });
