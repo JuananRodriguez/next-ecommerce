@@ -74,15 +74,13 @@ function cartReducers(
         };
       }
 
-      const cartState = {
+      return {
         ...state,
         [item.id]: {
           ...item,
           quantity: qtyToAdd,
         },
       };
-
-      return cartState;
     }
 
     case "decrease": {
@@ -92,7 +90,7 @@ function cartReducers(
 
       const quantity = existingCartItem.quantity - 1;
       if (quantity > 0) {
-        const cartState = {
+        return {
           ...state,
           [item.id]: {
             ...existingCartItem,
@@ -101,9 +99,9 @@ function cartReducers(
         };
       }
 
-      const cartState = { ...state };
-      delete cartState[item.id];
-      return cartState;
+      const newCartItems = { ...state };
+      delete newCartItems[item.id];
+      return newCartItems;
     }
 
     case "remove": {
@@ -111,9 +109,9 @@ function cartReducers(
         return state;
       }
 
-      const cartState = { ...state };
-      delete cartState[item.id];
-      return cartState;
+      const newCartItems = { ...state };
+      delete newCartItems[item.id];
+      return newCartItems;
     }
 
     default: {
