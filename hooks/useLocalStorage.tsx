@@ -1,7 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, SetStateAction } from "react";
 
-export function useLocalStorage(key: string, initialValue: any) {
-  const [storedValue, setStoredValue] = useState(initialValue);
+type SetStoredValue = SetStateAction<any>;
+
+export function useLocalStorage(
+  key: string,
+  initialValue: any
+): [any, SetStoredValue] {
+  const [storedValue, setStoredValue] =
+    useState<[any, SetStoredValue]>(initialValue);
 
   useEffect(() => {
     try {
