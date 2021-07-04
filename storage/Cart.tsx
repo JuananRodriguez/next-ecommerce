@@ -30,18 +30,14 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
     useLocalStorage("cart", {});
 
   useEffect(() => {
-    const localStorageCart = getLocalStorageCart();
-    if (JSON.stringify(localStorageCart) !== JSON.stringify(state)) {
-      const localState = localStorageCart as CartState;
-      const item = {} as Product;
-      dispatch({ type: "set", localState, item });
-    }
+    const localStorageCart: CartState = getLocalStorageCart();
+    const item = {} as Product;
+    dispatch({ type: "set", localState: localStorageCart, item });
     setIsInitialized(true);
   }, []);
 
   useEffect(() => {
     if (isInitialized) {
-      console.log("setLocalStorageCart", state);
       setLocalStorageCart(state);
     }
   }, [state]);
