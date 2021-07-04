@@ -23,7 +23,7 @@ export const useAnimation = (
     speed = 1,
     renderer = "svg",
     loop = false,
-    autoplay = false,
+    autoplay = true,
     ...rest
   } = lottieProps;
 

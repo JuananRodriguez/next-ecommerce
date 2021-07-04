@@ -8,6 +8,7 @@ type Props = { product: Product };
 export const WishListIcon = ({ product }: Props) => {
   const [AnimationComponent, lottieAnimation] = useAnimation({
     speed: 3,
+    autoplay: false,
     path: "/lotties/heart.json",
   });
 
