@@ -1,5 +1,4 @@
-import { useRef, useState } from "react";
-import { useEffect } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 
 export const MAX_MOBILE = 480;
 export const MAX_LITTLE_TABLET = 768;
@@ -28,15 +27,16 @@ export const useLayoutDimensions = (): ObjectReturned => {
     setViewportWidth(getViewPortSize());
   };
 
-  const waitUntilTheResizingIsFinished = () => {
+  const waitUntilTheResizingIsFinished = useCallback(() => {
     waitFor.current && clearTimeout(waitFor.current);
     waitFor.current = setTimeout(updateViewWidth, 200);
-  };
+  }, []);
 
   useEffect(() => {
     window.addEventListener("resize", waitUntilTheResizingIsFinished);
     updateViewWidth();
-    () => window.removeEventListener("resize", waitUntilTheResizingIsFinished);
+    return () =>
+      window.removeEventListener("resize", waitUntilTheResizingIsFinished);
   }, []);
 
   return {
