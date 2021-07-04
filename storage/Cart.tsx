@@ -33,7 +33,7 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
   }, [state]);
 
   useEffect(() => {
-    if (JSON.stringify(localStorageCart) !== JSON.stringify(state)) {
+    if (localStorageCart && JSON.stringify(localStorageCart) !== JSON.stringify(state)) {
       const localState = localStorageCart as CartState;
       const item = {} as Product;
       dispatch({ type: "set", localState, item });
