@@ -1,10 +1,5 @@
 import styled from "styled-components";
 
-interface TopBarStyleProps {
-  top?: boolean;
-  bottom?: boolean;
-}
-
 export const TopBarStyle = styled("div")`
   position: fixed;
   left: 0;
@@ -13,19 +8,8 @@ export const TopBarStyle = styled("div")`
   width: 100%;
   z-index: 100;
   height: 60px;
-
-  ${(p: TopBarStyleProps) =>
-    p.top &&
-    `
-    border-bottom: 3px solid #e0e0e0;
-    top: 0;
-    `}
-  ${(p: TopBarStyleProps) =>
-    p.bottom &&
-    `
-    border-top: 3px solid #e0e0e0;
-    bottom: 0;
-  `}
+  border-bottom: 3px solid #e0e0e0;
+  top: 0;
 
   & .content {
     display: flex;
@@ -50,8 +34,4 @@ export const TopBarStyle = styled("div")`
       }
     }
   }
-`;
-
-export const LogotypeAnchor = styled.a`
-  display: block;
 `;
