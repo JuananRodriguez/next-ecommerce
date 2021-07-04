@@ -2,6 +2,7 @@ import React, { Dispatch, useContext, useReducer } from "react";
 import { Product } from "@domainTypes/Product";
 import { useLocalStorage } from "hooks/useLocalStorage";
 import { useEffect } from "react";
+import { useState } from "react";
 
 export type CartItemType = Product & { quantity: number };
 
@@ -23,22 +24,27 @@ const CartDispatchContext = React.createContext(
 );
 
 const CartProvider = ({ children }: { children: React.ReactNode }) => {
-  const [localStorageCart, setLocalStorageCart] = useLocalStorage("cart", null);
   const [state, dispatch] = useReducer(cartReducers, defaultState);
+  const [isInitialized, setIsInitialized] = useState(false);
+  const [localStorageCart, setLocalStorageCart, getLocalStorageCart] =
+    useLocalStorage("cart", {});
 
   useEffect(() => {
-    if (localStorageCart !== null) {
-      setLocalStorageCart(state);
-    }
-  }, [state]);
-
-  useEffect(() => {
-    if (localStorageCart && JSON.stringify(localStorageCart) !== JSON.stringify(state)) {
+    const localStorageCart = getLocalStorageCart();
+    if (JSON.stringify(localStorageCart) !== JSON.stringify(state)) {
       const localState = localStorageCart as CartState;
       const item = {} as Product;
       dispatch({ type: "set", localState, item });
     }
-  }, [localStorageCart]);
+    setIsInitialized(true);
+  }, []);
+
+  useEffect(() => {
+    if (isInitialized) {
+      console.log("setLocalStorageCart", state);
+      setLocalStorageCart(state);
+    }
+  }, [state]);
 
   return (
     <CartItemsContext.Provider value={state}>
