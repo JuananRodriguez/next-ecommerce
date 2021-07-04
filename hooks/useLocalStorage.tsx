@@ -1,25 +1,26 @@
 import { useEffect, useState, SetStateAction } from "react";
 
-type SetStoredValue = SetStateAction<any>;
+type SetStoredValue = (value: any) => void;
+type GetStoredValue = () => any;
 
 export function useLocalStorage(
   key: string,
   initialValue: any
-): [any, SetStoredValue] {
+): [any, SetStoredValue, GetStoredValue] {
   const [storedValue, setStoredValue] =
     useState<[any, SetStoredValue]>(initialValue);
 
   useEffect(() => {
     try {
-      const item = window.localStorage.getItem(key);
-      const storedValue = item ? JSON.parse(item) : initialValue;
+      const items = window.localStorage.getItem(key);
+      const storedValue = items ? JSON.parse(items) : initialValue;
       setStoredValue(storedValue);
     } catch (error) {
       console.log(error);
     }
   }, []);
 
-  const setValue = (value: any) => {
+  const setValue = (value: any): void => {
     try {
       const valueToStore =
         value instanceof Function ? value(storedValue) : value;
@@ -30,5 +31,15 @@ export function useLocalStorage(
     }
   };
 
-  return [storedValue, setValue];
+  const getValue = (): any => {
+    try {
+      const items = window.localStorage.getItem(key);
+      return items ? JSON.parse(items) : storedValue;
+    } catch (error) {
+      console.log(error);
+      return storedValue;
+    }
+  };
+
+  return [storedValue, setValue, getValue];
 }
