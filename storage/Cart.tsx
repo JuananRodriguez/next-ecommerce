@@ -1,5 +1,7 @@
 import React, { Dispatch, useContext, useReducer } from "react";
 import { Product } from "@domainTypes/Product";
+import { useLocalStorage } from "hooks/useLocalStorage";
+import { useEffect } from "react";
 
 export type CartItemType = Product & { quantity: number };
 
@@ -8,20 +10,35 @@ export type CartState = {
 };
 
 export type CartAction = {
-  type: "add" | "remove" | "decrease";
+  type: "add" | "remove" | "decrease" | "set";
   item: Product;
   quantity?: number;
+  localState?: CartState;
 };
 
 const defaultState = {} as CartState;
-
 const CartItemsContext = React.createContext(defaultState);
 const CartDispatchContext = React.createContext(
   (() => {}) as Dispatch<CartAction>
 );
 
 const CartProvider = ({ children }: { children: React.ReactNode }) => {
+  const [localStorageCart, setLocalStorageCart] = useLocalStorage("cart", null);
   const [state, dispatch] = useReducer(cartReducers, defaultState);
+
+  useEffect(() => {
+    if (localStorageCart !== null) {
+      setLocalStorageCart(state);
+    }
+  }, [state]);
+
+  useEffect(() => {
+    if (JSON.stringify(localStorageCart) !== JSON.stringify(state)) {
+      const localState = localStorageCart as CartState;
+      const item = {} as Product;
+      dispatch({ type: "set", localState, item });
+    }
+  }, [localStorageCart]);
 
   return (
     <CartItemsContext.Provider value={state}>
@@ -34,11 +51,15 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
 function cartReducers(
   state: CartState,
-  { item, type, quantity: qtyToAdd = 1 }: CartAction
+  { localState, item, type, quantity: qtyToAdd = 1 }: CartAction
 ) {
   const existingCartItem = state[item.id];
 
   switch (type) {
+    case "set": {
+      return !localState ? {} : { ...localState };
+    }
+
     case "add": {
       if (existingCartItem != undefined) {
         const quantity = existingCartItem.quantity + qtyToAdd;
@@ -51,13 +72,15 @@ function cartReducers(
         };
       }
 
-      return {
+      const cartState = {
         ...state,
         [item.id]: {
           ...item,
           quantity: qtyToAdd,
         },
       };
+
+      return cartState;
     }
 
     case "decrease": {
@@ -67,7 +90,7 @@ function cartReducers(
 
       const quantity = existingCartItem.quantity - 1;
       if (quantity > 0) {
-        return {
+        const cartState = {
           ...state,
           [item.id]: {
             ...existingCartItem,
@@ -76,9 +99,9 @@ function cartReducers(
         };
       }
 
-      const newCartItems = { ...state };
-      delete newCartItems[item.id];
-      return newCartItems;
+      const cartState = { ...state };
+      delete cartState[item.id];
+      return cartState;
     }
 
     case "remove": {
@@ -86,9 +109,9 @@ function cartReducers(
         return state;
       }
 
-      const newCartItems = { ...state };
-      delete newCartItems[item.id];
-      return newCartItems;
+      const cartState = { ...state };
+      delete cartState[item.id];
+      return cartState;
     }
 
     default: {
